@@ -45,6 +45,15 @@ Page({
       title: '请稍后...',
       mask: true
     })
+    var refer = wx.getStorageSync('refer')
+    var referAppId=''
+    var channel=''
+    if (refer.referrerInfo && refer.referrerInfo.appId){
+      referAppId = refer.referrerInfo.appId
+    }
+    if (refer.query && refer.query.channel) {
+      channel = refer.query.channel
+    }
     util.GET(app.globalData.host + '/shop/createOrder', {
       session: wx.getStorageSync('session'),
       productId: that.data.payparams.productId,
@@ -55,7 +64,10 @@ Page({
       couponAccountId: that.data.currentSelectAccountId ? that.data.currentSelectAccountId:'',
       together: (that.data.payparams.together == 1 || that.data.payparams.together == 2),
       togetherId: that.data.payparams.together == 2 ? that.data.payparams.togetherid : '',
-      address:that.data.address
+      address:that.data.address,
+      referScene: refer.scene||'',
+      referAppId: referAppId,
+      referChannel: channel 
     }, function (res) {
       if (res && res.code == 1) {
         if (!res.data.order) {

@@ -88,9 +88,9 @@ Page({
       }, function (res) {
         if (res && res.code == 1) {
           util.showToast('申请退款成功','success')
-          wx.navigateTo({
+          wx.redirectTo({
             url: '/pages/shop/orderdetail?orderId=' + that.data.order.orderId,
-          })
+          }) 
         } else {
           util.showToast('申请退款失败', 'success')
         }
