@@ -1,0 +1,107 @@
+page{
+  background: #F2F2F2;
+}
+.item{
+  background: #fff;
+  margin-bottom:10px; 
+}
+.title text{
+  font-size: 16px;
+  color: #000;
+  font-weight: bold;
+   line-height: 25px;
+}
+.title{
+  margin: 5px 10px;
+}
+.info{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-content: center;
+  justify-content: space-between;
+  margin: 5px 10px;
+}
+
+.info1{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-content: center;
+  justify-content: space-between;
+}
+.info1-price-1{
+  color:#d70606;
+  font-size: 17px;
+}
+.info1-price-2{
+  color:#666;
+  font-size: 14px;
+  text-decoration:  line-through;
+}
+
+.info2{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-content: center;
+  justify-content: space-between;
+}
+.info2-1{
+  color:#666;
+  font-size: 12px;  
+}
+
+.info2-image{
+  position: relative; 
+  width: 25px;
+  height: 45px;
+  margin: 0px 5px;
+}
+
+.info2-image image{
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+}
+.togetherBtn{
+  background: #d70606;
+  height: 30px;
+  line-height: 30px; 
+  margin-left:5px;
+}
+.togetherBtn text{
+  color: #fff;
+  font-size: 13px;
+  margin: 5px;
+}
+.banner{
+  position: relative;
+}
+.community text{
+  height: 10px;
+  line-height: 10px;
+  position: absolute;
+  bottom:10px;
+  right: 10px;
+  border-radius: 5px;
+  background: orange;
+  color: #fff;
+  padding: 4px;
+  text-align: center;
+  font-size: 12px;
+}
+.pick text{
+  height: 10px;
+  line-height: 10px;
+  position: absolute;
+  bottom:10px;
+  left: 10px;
+  border-radius: 5px;
+  background: green;
+  color: #fff;
+  padding: 4px;
+  text-align: center;
+  font-size: 12px;
+}
+

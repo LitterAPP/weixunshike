@@ -1,0 +1,36 @@
+<view class='topPlaceHolder'>
+</view>
+<scroll-view scroll-y scroll-with-animation enable-back-to-top style='height:{{H-80}}px;'>
+  <view class='item' catchtap='listALL'>
+    <view class='item-1'>
+      <text>全部宝贝</text>
+      <image src='/images/pull_down_icon.png' style='height:30px;width:30px;transform: rotate(-90deg);'></image>
+    </view>
+  </view>
+
+  <block wx:for='{{list.options}}' wx:key='id'>
+    <view class='item' catchtap='listByPID' wx:if='{{!item.subCategory || !item.subCategory.options || item.subCategory.options.length<=0}}' data-categoryid='{{item.value}}'>
+      <view class='item-1'>
+        <text>{{item.text}}</text>
+        <image src='/images/pull_down_icon.png' style='height:30px;width:30px;transform: rotate(-90deg);'></image>
+      </view>
+    </view>
+
+    <view class='item item-ext' wx:else >
+      <view class='item-1'  catchtap='listByPID'  data-categoryid='{{item.value}}'>
+        <text>{{item.text}}</text>
+        <text style='font-size:13px;color:#ccc;margin-right:10px; '>查看全部</text>
+      </view>
+
+      <view>
+        <block wx:for='{{item.subCategory.options}}' wx:for-item='childItem' wx:key='id'>
+        <view  catchtap='listByPIDAndSUBID'  class='item-1-1' data-pcategoryid='{{item.value}}' data-subcategoryid='{{childItem.value}}' style='width:{{(W-35)/2}}px; '>{{childItem.text}}</view>
+        </block>
+      </view>
+    </view>
+  </block>
+</scroll-view>
+<view class='top'>
+  <fbutton extImgStyle='height:30px;width:30px;transform: rotate(90deg);' extStyle='width:30px;' adv='true' formType='submit' buttonImage='/images/pull_down_icon.png' buttonText='' bind:fbutton-tap='goBack' />
+  <text class='top-title'>全部分类</text>
+</view>

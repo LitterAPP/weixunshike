@@ -1,0 +1,61 @@
+<view class='topPlaceHolder'>
+</view>
+<view class='sort'>
+  <view class='sort-item' data-sort='5' catchtap='sortClick'>
+    <text wx:if='{{currentSort == 5}}' class='activite-text'>综合</text>
+    <text wx:else class='normal-text'>综合</text>
+  </view>
+  <view class='sort-item' data-sort='2' catchtap='sortClick'>
+    <text wx:if='{{currentSort == 2}}' class='activite-text'>销量</text>
+    <text wx:else class='normal-text'>销量</text>
+  </view>
+  <view class='sort-item' data-sort='1' catchtap='sortClick'>
+    <text wx:if='{{currentSort == 1}}' class='activite-text'>新品</text>
+    <text wx:else class='normal-text'>新品</text>
+  </view>
+  <view class='sort-item' data-sort='4' catchtap='sortClick'>
+    <view class='sort-price'>
+      <text wx:if='{{currentSort == 4}}' class='activite-text'>价格</text>
+      <text wx:else class='normal-text'>价格</text>
+      <image wx:if='{{currentSortPrictDesc && currentSort==4}}' style='width:20px;height:20px;' src='/images/down.png'></image>
+      <image wx:if='{{!currentSortPrictDesc && currentSort==4}}' style='width:20px;height:20px;transform: rotate(180deg);' src='/images/down.png'></image>
+    </view>
+  </view>
+</view>
+
+
+<scroll-view scroll-y scroll-with-animation enable-back-to-top style='height:{{H-110}}px;' bindscrolltolower='more'>
+  <view wx:for='{{list}}' wx:key='{{id}}' class='item' >
+    <view  catchtap='goProductDetails' data-pid='{{item.productId}}' wx:if='{{index%2==0}}' style='margin-right:5px;background:#fff;width:{{(W-10)/2}}px;' hover-class='click-hover'>
+      <image mode='scaleToFill' style='height:{{(W-10)/2}}px;width:{{(W-10)/2}}px;' src='{{item.productBanner}}'></image>
+      <view class='item-title'>
+        <text style='margin:5px;max-width:{{(W-10)/2-10}}px;min-height:40px;'>{{item.productName}}</text>
+      </view>
+      <view class='item-price'>
+        <text class='item-price-1'>￥</text>
+        <text class='item-price-2'>{{item.productNowPrice}}</text>
+        <text class='item-price-3'>{{item.deal}}人付款</text>
+      </view>
+    </view>
+    <view catchtap='goProductDetails' data-pid='{{item.productId}}' wx:if='{{index%2==1}}' style='margin-left:5px;background:#fff;width:{{(W-10)/2}}px;' hover-class='click-hover'>
+      <image mode='scaleToFill' style='height:{{(W-10)/2}}px;width:{{(W-10)/2}}px;' src='{{item.productBanner}}'></image>
+      <view class='item-title'>
+        <text style='margin:5px;max-width:{{(W-10)/2-10}}px;min-height:40px;'>{{item.productName}}</text>
+      </view>
+      <view class='item-price'>
+        <text class='item-price-1'>￥</text>
+        <text class='item-price-2'>{{item.productNowPrice}}</text>
+        <text class='item-price-3'>{{item.deal}}人付款</text>
+      </view>
+    </view>
+  </view> 
+  <view wx:if='{{nomore && !loading}}' class='nomore'>-- 没有更多宝贝啦 --</view>
+  <view wx:if='{{loading && !nomore}}' class='nomore'>-- 加载中 --</view>
+</scroll-view>
+<view class='pageInfo'>{{list.length}}/{{total}}</view>
+
+<view class='top'>
+  <fbutton extImgStyle='height:30px;width:30px;transform: rotate(90deg);' extStyle='width:30px;' adv='true' formType='submit' buttonImage='/images/pull_down_icon.png' buttonText='' bind:fbutton-tap='goBack' />
+  <text class='top-title'>全部宝贝</text>
+</view>
+

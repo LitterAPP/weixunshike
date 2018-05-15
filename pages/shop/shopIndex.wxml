@@ -1,0 +1,130 @@
+<!--放在最后，保证事件不被拦截-->
+<view class='banner'>
+  <image lazy-load mode='aspectFill' style='width:{{W}}px;height:120px;' src='{{config.shopBanner}}'></image>
+  <view class='shopInfo'>
+    <image lazy-load src='{{shopAvatar}}'></image>
+    <view class='nameInfo'>
+      <text>{{shopName}}</text>
+      <view class='creitInfo'>
+        <image lazy-load lazy-load src='/images/zuan.png'></image>
+        <image lazy-load src='/images/zuan.png'></image>
+        <image lazy-load src='/images/zuan.png'></image>
+        <image lazy-load src='/images/zuan.png'></image>
+        <image lazy-load src='/images/zuan.png'></image>
+      </view>
+    </view>
+  </view>
+  <!--
+  <view class='followInfo'>
+    <view class='followNumber'>
+      <text>{{follow}}</text>
+      <text>粉丝数</text>
+    </view>
+    <fbutton wx:if='{{!followed}}' extStyle='height:25px;line-height:25px;width:40px;background:#fff;color:#FF3030;' formType='submit' buttonText='已关注' bind:fbutton-tap='follow' />
+    <fbutton wx:else extStyle='height:25px;line-height:25px;width:40px;background:#FFA500;color:#fff;' formType='submit' buttonText='关注' bind:fbutton-tap='follow' />
+  </view>
+  -->
+</view>
+<view class='nav'>
+  <view class='nav-item nav-item-index'>
+    <fbutton extStyle='height:30px;width:40px;background:rgba(0,0,0,0);color:#2c2c2c;' formType='submit' buttonText='首页' bind:fbutton-tap='navLinkClick' />
+  </view>
+  <block wx:if='{{config && config.firstNavList && config.firstNavList.length>0}}'>
+    <view class='nav-item' wx:for='{{config.firstNavList}}' wx:key='id'>
+      <fbutton wx:if='{{item.linkType==2}}' data-type='{{item.type}}' data-url='{{item.url}}' extImgStyle='height:30px;width:60px;' extStyle='width:60px;' adv='true' formType='submit' buttonImage='{{item.img}}' buttonText='' bind:fbutton-tap='navLinkClick'
+      />
+      <fbutton wx:if='{{item.linkType==1}}' data-type='{{item.type}}' data-url='{{item.url}}' extStyle='width:60px;background:rgba(0,0,0,0);color:#2c2c2c;' formType='submit' buttonText='{{item.text}}' bind:fbutton-tap='navLinkClick' />
+    </view>
+  </block>
+</view>
+<scroll-view bindscrolltoupper='toupper' bindscrolltolower='tolower' scroll-y scroll-with-animation enable-back-to-top style='height:{{H-215}}px;'>
+  <!--
+  <view class='coupon'>
+    <text class='coupon-txt-1'>跨店满减</text>
+    <text class='coupon-txt-2'>2018.03.26~2018.03.28每慢150减10，上不封顶</text>
+  </view>-->
+  <view class='wellcome'>
+    <text>{{config.wellcomeText}}</text>
+  </view>
+  <block wx:if='{{config && config.secondNavList && config.secondNavList.length>0}}'>
+    <view class='nav nav-sec'>
+      <view class='nav-sec-item' wx:for='{{config.secondNavList}}' wx:key='id'>
+        <fbutton wx:if='{{item.linkType==2}}' data-type='{{item.type}}' data-url='{{item.url}}' extImgStyle='height:30px;width:60px;' extStyle='width:60px;' adv='true' formType='submit' buttonImage='{{item.img}}' buttonText='' bind:fbutton-tap='navLinkClick'
+        />
+        <fbutton wx:if='{{item.linkType==1}}' data-type='{{item.type}}' data-url='{{item.url}}' extStyle='width:60px;background:rgba(0,0,0,0);color:#9C9C9C;' formType='submit' buttonText='{{item.text}}' bind:fbutton-tap='navLinkClick' />
+      </view>
+    </view>
+  </block>
+  <swiper wx:if='{{config && config.swiperList && config.swiperList.length>0}}' indicator-dots autoplay circular style='height:170px;margin-bottom:5px;'>
+    <swiper-item wx:for='{{config.swiperList}}' wx:key='id'>
+      <image lazy-load mode='widthFix' data-type='{{item.type}}' data-url='{{item.url}}' catchtap='navLinkClick' style='width:{{W}}px;height:170px;' src='{{item.img}}'></image>
+    </swiper-item>
+  </swiper>
+  <block wx:if='{{config && config.thirdNavList && config.thirdNavList.length>0}}'>
+    <view class='nav nav-third'>
+      <view class='nav-sec-item' wx:for='{{config.thirdNavList}}' wx:key='id'>
+        <fbutton wx:if='{{item.linkType==2}}' data-type='{{item.type}}' data-url='{{item.url}}' extImgStyle='height:40px;line-height:40px;width:40px;' extStyle='width:40px;' adv='true' formType='submit' buttonImage='{{item.img}}' buttonText='' bind:fbutton-tap='navLinkClick'
+        />
+        <fbutton wx:if='{{item.linkType==1}}' data-type='{{item.type}}' data-url='{{item.url}}' extStyle='height:60px;line-height:60px;width:60px;background:rgba(0,0,0,0);color:#9C9C9C;' formType='submit' buttonText='{{item.text}}' bind:fbutton-tap='navLinkClick'
+        />
+      </view>
+    </view>
+  </block>
+  <view wx:if='{{config && config.fourthNavList && config.fourthNavList.length>0}}'>
+    <block wx:for='{{config.fourthNavList}}' wx:key='id'>
+      <image lazy-load data-type='{{item.type}}' data-url='{{item.url}}' catchtap='navLinkClick' mode='widthFix' style='width:{{W}}px;height:170px;' src='{{item.img}}'></image>
+    </block>
+  </view>
+</scroll-view>
+
+<view class='nav nav-item-bottom' wx:if='{{config && config.fiveNavList && config.fiveNavList.length>0}}'>
+  <view class='nav-item' wx:for='{{config.fiveNavList}}' wx:key='id'>
+    <fbutton wx:if='{{item.linkType==2}}' data-type='{{item.type}}' data-url='{{item.url}}' extImgStyle='height:30px;width:60px;' extStyle='width:60px;' adv='true' formType='submit' buttonImage='{{item.img}}' buttonText='' bind:fbutton-tap='navLinkClick'
+    />
+    <fbutton wx:if='{{item.linkType==1}}' data-type='{{item.type}}' data-url='{{item.url}}' extStyle='width:60px;background:rgba(0,0,0,0);color:#2c2c2c;' formType='submit' buttonText='{{item.text}}' bind:fbutton-tap='navLinkClick' />     
+  </view> 
+</view>
+ 
+<view wx:if='{{ coupons && coupons.length>0}}' class='open-coupon-btn'>
+  <image lazy-load src='/images/coupon_1.png' catchtap='openCoupon'></image>
+</view>
+
+<view wx:if='{{ openCoupon && coupons && coupons.length>0}}' class='getcoupon' style='width:{{W}}px;height:{{H}}px;'>
+  <view class='activityText'>
+    <text wx:if='config.activityText'>{{config.activityText}}</text>
+    <image lazy-load wx:if='config.activityBg' mode="scaleToFill" src='{{config.activityBg}}'></image>
+  </view>
+  <scroll-view class='getcoupon-scroll-view' scroll-with-animation scroll-y style='height:300px;width:220px;'>
+    <view class='coupon-container' wx:for='{{coupons}}' wx:key='{{id}}'>
+      <view class='coupons'>
+        <text>{{item.name}}</text>
+        <text wx:if='{{item.valid==1}}' style='color:#FF8247;font-size:12px;'>有效期：{{item.expireTime}}</text>
+        <text wx:if='{{item.valid==0}}' style='color:#666;font-size:12px;'>有效期：{{item.expireTime}}</text>
+        <view class='coupon-item'>
+          <image lazy-load wx:if='{{item.valid==1}}' src='/images/coupon_1.png'></image>
+          <image lazy-load wx:if='{{item.valid==0}}' src='/images/coupon_0.png'></image>
+          <view wx:if='{{item.valid==1}}' class='coupon-item-1' style='line-height:15px;'>
+            <text style='color:#d70606;font-size:14px;'>￥</text>
+            <text style='color:#d70606;font-size:14px;'>{{item.amount}}</text>
+          </view>
+          <view wx:if='{{item.valid==0}}' class='coupon-item-1' style='line-height:15px;'>
+            <text style='color:#666;font-size:14px;'>￥</text>
+            <text style='color:#666;font-size:14px;'>{{item.amount}}</text>
+          </view>
+          <view wx:if='{{item.valid==1}}' class='coupon-item-1' data-id='{{item.id}}' style='border-left:1px dotted #f2f2f2;' catchtap='getCoupon'>
+            <text style='color:#d70606;font-size:13px;width: 70px;line-height:40px;height: 40px;padding:0px;'>点击领取</text>
+          </view>
+          <view wx:if='{{item.valid==0}}' class='coupon-item-1' style='border-left:1px dotted #f2f2f2;'>
+            <text style='color:#666;font-size:13px;width: 70px;line-height:40px;height: 40px;padding:0px;'>已领完</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+  <view class='coupon-bottom'>
+    <fbutton extImgStyle='height:30px;width:30px;' extStyle='width:110px;' adv='true' formType='submit' buttonImage='/images/zf-red.png' openType='share' buttonText='分享给好朋友' />
+    <fbutton extImgStyle='height:30px;width:30px;' extStyle='width:30px;margin-top:10px;' formType='submit' buttonText='关闭' bind:fbutton-tap='closeCoupon' />
+  </view>
+</view>
+
+ <fbutton class='contact-avatar' extImgStyle='height:25px;width:25px;' extStyle='width:25px;' adv='true' formType='submit' buttonImage='/images/contact-avatar.png' openType='contact' buttonText='' />

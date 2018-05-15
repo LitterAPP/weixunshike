@@ -1,0 +1,10 @@
+<!--comp/formbutton/fbutton.wxml-->
+<form report-submit bindsubmit='submit'>
+  <button wx:if='{{!adv}}' size='mini' form-type='{{formType}}' open-type='{{openType}}' plain style='box-sizing: unset;border:0px;border-radius:20px;margin-left: 5px;margin-right: 5px;padding-left: 5px;padding-right: 5px;width:60px;background:#40d37a;color:#fff;{{extStyle}}'>{{buttonText}}</button>
+
+  <view  wx:else class='wrap-button-adv'  style='{{extStyle}}' >
+    <image  mode='aspectFill' style='{{extImgStyle}}' src='{{buttonImage}}'></image>
+    <text style='{{textStyle}}'>{{buttonText}}</text>
+    <button form-type='{{formType}}' open-type='{{openType}}' ></button>
+  </view>
+</form>

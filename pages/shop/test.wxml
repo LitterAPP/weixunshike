@@ -1,0 +1,12 @@
+<!--pages/shop/test.wxml-->
+<form bindsubmit='createOrder'>
+  <input name='productId' style='height:30px;margin:15px;' placeholder='input product id' value ='product_1'></input>
+  <input name='buyNum' style='height:30px;margin:15px;' placeholder='buy number' value='1'></input>
+  <input name='groupId' style='height:30px;margin:15px;' placeholder='group ID' value='group_test_1'></input>
+  <input name='userAccountId' style='height:30px;margin:15px;' placeholder='userAccountId'  ></input>
+  <input name='couponAccountId' style='height:30px;margin:15px;' placeholder='couponAccountId'  ></input>  
+<input name='togetherId' style='height:30px;margin:15px;' placeholder='togetherId'  ></input>  
+   
+  <switch name='together'>拼团下单</switch>
+  <button formType="submit">createOrder</button>
+</form>

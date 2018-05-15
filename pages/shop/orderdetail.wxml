@@ -1,0 +1,199 @@
+<block wx:if='{{pageshow}}'>
+  <view class='topPlaceHolder'>
+  </view>
+  <view class='order-status'>
+    <text wx:if='{{order.orderStatus==0}}'>待支付</text>
+    <text wx:if='{{order.orderStatus==1}}'>支付成功·待发货</text>
+    <text wx:if='{{order.orderStatus==2}}'>支付取消</text>
+    <text wx:if='{{order.orderStatus==3}}'>支付失败</text>
+    <text wx:if='{{order.orderStatus==4}}'>已支付·拼团中...</text>
+
+    <text wx:if='{{order.orderStatus==5}}'>已退款</text>
+    <text wx:if='{{order.orderStatus==55}}'>退款中</text>
+    <text wx:if='{{order.orderStatus==555}}'>退款审核中</text>
+    <text wx:if='{{order.orderStatus==5555}}'>退款审核失败</text>
+    <text wx:if='{{order.orderStatus==55555}}'>退款失败</text>
+
+    <text wx:if='{{order.orderStatus==6}}'>拼团成功·待发货</text>
+    <text wx:if='{{order.orderStatus==7}}'>货品已快递寄出</text>
+    <text wx:if='{{order.orderStatus==8}}'>交易成功·快递已签收</text>
+    <text wx:if='{{order.orderStatus==9}}'>交易成功·您已收货</text>
+    <text wx:if='{{order.orderStatus==10}}'>支付成功·等待抽奖</text>
+    <text wx:if='{{order.orderStatus==11}}'>抽奖完成·恭喜中{{order.prize}}</text>
+    <text wx:if='{{order.orderStatus==12}}'>抽奖完成·很遗憾，未中奖</text>
+    <text wx:if='{{order.orderStatus==14}}'>未成团·已退款到余额</text>
+  </view>
+  <view class='order-shipping'>
+    <view class='order-shipping-1' wx:if='{{order.express}}' data-expressid='{{order.express.id}}'>
+      <image src='/images/express_icon.png'></image>
+      <view class='order-shipping-1-1' style='width:{{W-40}}px;'>
+        <text style='color:#04be02;'>{{order.express.station}}</text>
+        <text style='font-size:13px;'>{{order.express.time}}</text>
+      </view>
+    </view>
+    <view class='order-shipping-1' wx:if='{{order.address}}'>
+      <image src='/images/address.png'></image>
+      <view class='order-shipping-1-1' style='width:{{W-40}}px;'>
+        <text>{{order.address.userName}}·{{order.address.telNumber}}</text>
+        <text>{{order.address.address}}</text>
+      </view>
+    </view>
+  </view>
+  <view class='order-item'>
+    <view class='order-item-1' hover-class='click-hover' data-orderid='{{order.orderId}}'>
+      <image src='{{order.groupImg}}'></image>
+      <view class='order-item-1-2'>
+        <view class='order-item-1-2-1' style='width:{{W-72}}px;'>
+          <text style='width:{{W-72-50}}px;'>{{order.productName}}</text>
+          <text style='width:50px;font-size:13px;'><block wx:if='{{order.together}}'>￥{{order.groupTogetherPrice}}</block><block wx:else>￥{{order.groupPrice}}</block></text>
+        </view>
+        <view class='order-item-1-2-1' style='width:{{W-72}}px;'>
+          <text style='width:{{W-72-50}}px;color:#666;font-size:12px;'>{{order.groupName}}</text>
+          <text style='width:50px;color:#666;font-size:12px;'>x{{order.buyNum}}</text>
+        </view>
+      </view>
+    </view>
+    <view class='order-item-2'>
+      <text style=''>实付：￥{{order.totalPay}}</text>
+    </view>
+    <view class='order-item-2' style='margin 5px 0px;'>
+      <navigator style='color:#666;font-size:12px;padding:5px 10px;' url="/pages/shop/detail?productId={{order.productId}}" hover-class="click-hover">再次购买</navigator>
+    </view>
+  </view>
+
+  <view class='order-info' wx:if='{{togethers && togethers.length>0}}' style=''>
+    <view class='together-container' wx:if='{{order.together.status==2}}'>
+      <view class='together'>
+        <view class='together-1' wx:for='{{togethers}}' wx:key='{{id}}'>
+          <image wx:if='{{item.master}}' style='border:2px solid #04be02;' src='{{item.avatar}}'></image>
+          <image wx:else src='{{item.avatar}}'></image>
+          <text wx:if='{{item.master}}' style='color:#04be02;'>{{item.name}}</text>
+          <text wx:else>{{item.name}}</text>
+        </view>
+      </view>
+      <text style='height: 30px; line-height: 30px;width:200px;text-align:center; background: #04be02; font-size: 15px; color: #fff;'>已成团</text>
+    </view>
+    <view class='together-container' wx:if='{{order.together.status==3}}'>
+      <view class='together'>
+        <view class='together-1' wx:for='{{togethers}}' wx:key='{{id}}'>
+          <image wx:if='{{item.master}}' style='border:2px solid #04be02;' src='{{item.avatar}}'></image>
+          <image wx:else src='{{item.avatar}}'></image>
+          <text wx:if='{{item.master}}' style='color:#04be02;'>{{item.name}}</text>
+          <text wx:else>{{item.name}}</text>
+        </view>
+      </view>
+      <text style='height: 30px; line-height: 30px;width:200px;text-align:center; background: #666; font-size: 15px; color: #fff;'>未成团·已过期</text>
+    </view>
+    <view class='together-container' wx:if='{{order.together.status==1}}'>
+      <view class='together'>
+        <view class='together-1' wx:for='{{togethers}}' wx:key='{{id}}'>
+          <image wx:if='{{item.master}}' style='border:2px solid #04be02;' src='{{item.avatar}}'></image>
+          <image wx:else src='{{item.avatar}}'></image>
+          <text wx:if='{{item.master}}' style='color:#04be02;'>{{item.name}}</text>
+          <text wx:else>{{item.name}}</text>
+        </view>
+      </view>
+      <button open-type='share' style='height: 30px; line-height: 30px;width:200px;text-align:center; background: #04be02; font-size: 15px; color: #fff;'>还差{{order.together.residueNumber}}个，快邀请好友参团</button>
+      <text style='width:200px;text-align:center;ont-size:12px; color: #666;'>过期时间{{order.together.expireTime}}</text>
+    </view>
+  </view>
+
+  <view class='order-info' style=''>
+    <view class='order-info-1' style='background:#fff;height:50px; justify-content: space-around;margin-bottom:5px;'>
+      <text data-sellertelnumber='{{order.sellerTelNumber}}' catchtap='call' style='border:1px solid #04be02;color:#04be02;padding:5px;'>拨打客服电话</text>
+      <text data-copydata='{{order.sellerWxNumber}}' bindtap='copy' style='border:1px solid #04be02;color:#04be02;padding:5px;'>复制客服微信</text>
+    </view>
+  </view>
+
+  <view class='order-info' style='background:#fff;margin-top:10px;' wx:if='{{showShipper}}'>
+    <view class='order-info-1' style='background:#fff;height:50px; justify-content: flex-end;margin-bottom:5px;'>
+      <text style='font-size:14px;'> 追踪物流</text>
+      <switch bindchange='traceShipper'></switch>
+    </view>
+
+    <view class='shipper-info' wx:if='{{showShipper && shipper.state!=-3}}' style='border-top:1px solid #f2f2f2;margin-top:10px'>
+      <text>物流公司：</text>
+      <text style='margin-left: 0px;color:#1296db;'>{{shipper.shipperName}}</text>
+    </view>
+    <view class='shipper-info' wx:if='{{showShipper && shipper.state!=-3}}' style='margin-bottom:10px;'>
+      <text>运单编号：</text>
+      <text style='margin-left: 0px;color:#d4237a;'>{{shipper.orderCode}}</text>
+      <text data-copydata='{{shipper.orderCode}}' catchtap='copy' style='border:1px solid #666;'>复制</text>
+    </view>
+    <view wx:if='{{showShipper && shipper.state==-3}}'>
+      <text>货品出库中,暂无物流信息，请耐性等待商家发货</text>
+    </view>
+
+    <view wx:elif='{{showShipper && traces.length==0}}'>
+      <text>快递已寄出,还未录入物流数据,请稍后再查物流信息</text>
+    </view>
+    <view class='shipper-trace' wx:if='{{showShipper}}'>
+      <view class='shipper-trace-1' wx:for='{{traces}}' wx:key='{{id}}'>
+        <image wx:if='{{index==0}}' src='/images/dian_1.png'></image>
+        <image wx:else src='/images/dian_0.png'></image>
+
+        <view wx:if='{{index==0}}' class='shipper-trace-2'>
+          <text style='color:#04be02;font-weight:blod;'>{{item.AcceptStation}}</text>
+          <text style='color:#04be02;'>{{item.AcceptTime}}</text>
+        </view>
+        <view wx:else class='shipper-trace-2'>
+          <text>{{item.AcceptStation}}</text>
+          <text>{{item.AcceptTime}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class='order-info' style='background:#fff;margin-top:10px;padding-top:5px;'>
+    <view class='order-info-1'>
+      <text>订单编号：{{order.orderId}}</text>
+      <text data-copydata='{{order.orderId}}' catchtap='copy' style='border:1px solid #666;'>复制</text>
+    </view>
+    <view class='order-info-2'>
+      <text>微信支付：￥{{order.cashPay}}</text>
+      <text>余额支付：￥{{order.balancePay}}</text>
+      <text>优惠券支付：￥{{order.couponPay}}</text>
+    </view>
+    <view class='order-info-2'>
+      <text>下单时间：{{order.orderTime}}</text>
+    </view>
+  </view>
+
+  <view class='order-info' style='background:#fff;margin-top:10px;padding-top:5px;'>
+    <view class='order-info-1'>
+      <text>备注：</text>
+    </view>
+
+    <view class='order-info-2'>
+      <block wx:for='{{order.memos}}' wx:key='{{id}}'>
+        <text> 
+          {{item}}
+        </text>
+      </block>
+    </view>
+
+  </view>
+  <!--订单状态为已-->
+  <view wx:if='{{order.canRefund}}' class='order-info' style='background:#fff;margin-top:10px;padding-top:5px;'>
+    <view class='order-info-1'>
+      <fbutton extImgStyle='height:30px;width:30px;' extStyle='margin-left:10px;width:120px;color:#8a8a8a;' adv='true' formType='submit' buttonImage='/images/refund-0.png' bind:fbutton-tap='toastRefund' buttonText='申请退款' />
+    </view>
+  </view>
+</block>
+
+<view wx:if='{{toastRefund}}' style='height:{{H}}px;width:{{W}}px;background:rgba(0,0,0,0.5);position:fixed;top:0px;left:0px;'>
+  <textarea bindinput='refundInput' placeholder='请输入退款原因' auto-focus fixed='{{true}}' style='padding:5px;background:#fff;height:150px;width:{{W}}px;margin-top:100px;' />
+  <fbutton formType='submit' style='position:fixed;right:10px;margin-top:5px;' buttonText='申请退款' bind:fbutton-tap='confirmRefund' />
+</view>
+
+<view class='blank'></view>
+<view catchtap='goToSendGoods' data-orderid='{{order.orderId}}' wx:if='{{order.isSeller && order.orderStatus==1 && order.productType==0}}' class='fix-bottom' style='background:green;color:#fff;'>
+  去发货
+</view>
+
+<view class='top'>
+  <fbutton extImgStyle='height:30px;width:30px;transform: rotate(90deg);' extStyle='width:30px;' adv='true' formType='submit' buttonImage='/images/pull_down_icon.png' buttonText='' bind:fbutton-tap='goBack' />
+  <text class='top-title' style='color:#fff;'>订单详情</text>
+</view>
+
+<fbutton class='contact-avatar' extImgStyle='height:25px;width:25px;' extStyle='width:25px;' adv='true' formType='submit' buttonImage='/images/contact-avatar.png' openType='contact' buttonText='' />

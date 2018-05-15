@@ -1,0 +1,192 @@
+<block wx:if='{{pageshow}}'>
+  <swiper style='height:{{W}}px;' indicator-dots="{{true}}" indicator-color="rgba(184,129,27,0.3)" indicator-active-color="rgba(184,129,27,0.8)" circular='{{true}}' autoplay="{{true}}" bindchange='swiperChanged' interval="{{5000}}" duration="{{300}}">
+    <swiper-item wx:for="{{product.screenshots}}" wx:key='{{id}}'>
+      <image bindtap='previewScreenshots' mode='aspectFill' style='height:{{W}}px;width:{{W}}px;' src='{{item}}'></image>
+    </swiper-item>
+  </swiper>
+  <view class='priceinfo'>
+    <view class='priceinfo-1'>
+      <view class='priceinfo-1-1'>
+        <text class='priceinfo-1-1-1'>￥{{product.productNowPrice}}</text>
+        <text class='priceinfo-1-1-2'>￥{{product.productOriginPrice}}</text>
+        <text class='community' catchtap='communityDesc' wx:if='{{product.communities && product.communities.length>0}}' data-idx='{{index}}'>小区合作</text>
+        <text class='pick' catchtap='pingtaiyanxuanDesc' wx:if='{{product.platformChecked && product.platformChecked==1}}' data-idx='{{index}}'>平台严选</text>
+      </view>
+      <view wx:if='{{product.joinTogether==1}}' class='priceinfo-1-2'>
+        <text class='priceinfo-1-2-1'>已团{{product.togetherSales}}件*</text>
+        <text class='priceinfo-1-2-2'>{{product.togetherNumber}}人团</text>
+      </view>
+    </view>
+    <view class='priceinfo-2'>
+      <view class='share'>
+        <image src='/images/zf-red.png'></image>
+        <button open-type='share'></button>
+      </view>
+      <text>分享</text>
+    </view>
+  </view>
+  <view class='title'>
+    <text>{{product.productName}}</text>
+  </view>
+  <view class='attribute'>
+    <view class='attribute-info' wx:for='{{product.attributes}}' wx:key='{{id}}'>
+      <image src='/images/gou_red.png'></image>
+      <text>{{item}}</text>
+    </view>
+  </view>
+
+  <scroll-view class='scrollH' scroll-x='{{true}}'>
+    <view class='coupon-container' wx:for='{{coupons}}' wx:key='{{id}}'>
+      <view class='coupons'>
+        <text>{{item.name}}</text>
+        <text wx:if='{{item.valid==1}}' style='color:#FF8247;font-size:10px;'>有效期：{{item.expireTime}}</text>
+        <text wx:if='{{item.valid==0}}' style='color:#666;font-size:10px;'>有效期：{{item.expireTime}}</text>
+        <view class='coupon-item'>
+          <image wx:if='{{item.valid==1}}' src='/images/coupon_1.png'></image>
+          <image wx:if='{{item.valid==0}}' src='/images/coupon_0.png'></image>
+          <view wx:if='{{item.valid==1}}' class='coupon-item-1' style='line-height:15px;'>
+            <text style='color:#d70606;font-size:14px;'>￥</text>
+            <text style='color:#d70606;font-size:14px;'>{{item.amount}}</text>
+          </view>
+          <view wx:if='{{item.valid==0}}' class='coupon-item-1' style='line-height:15px;'>
+            <text style='color:#666;font-size:14px;'>￥</text>
+            <text style='color:#666;font-size:14px;'>{{item.amount}}</text>
+          </view>
+          <view wx:if='{{item.valid==1}}' class='coupon-item-1' data-id='{{item.id}}' style='border-left:1px dotted #f2f2f2;' catchtap='getCoupon'>
+            <text style='color:#d70606;font-size:13px;width: 70px;line-height:40px;height: 40px;padding:0px;'>领取</text>
+          </view>
+          <view wx:if='{{item.valid==0}}' class='coupon-item-1' style='border-left:1px dotted #f2f2f2;'>
+            <text style='color:#666;font-size:13px;width: 70px;line-height:40px;height: 40px;padding:0px;'>已领完</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <view class='together-list' wx:if='{{product.joinTogether == 1 && product.togetherCount > 0}}'>
+    <view class='together-list-title'>
+      <text class='together-list-title-1'>{{product.togetherCount}}人在开团</text>
+      <text class='together-list-title-2'>仅仅显示5个正在开团的人</text>
+    </view>
+    <view class='together-list-item' wx:for='{{product.togetherJoiners}}' wx:key='{{id}}' catchtap='buy' data-togetherid='{{item.togetherId}}' data-together='2'>
+      <view class='together-list-item-1'>
+        <image src='{{item.masterAvatar}}'></image>
+        <text>{{item.masterName}}</text>
+      </view>
+      <view class='together-list-item-2'>
+        <view class='together-list-item-2-1'>
+          <text class='together-list-item-2-1-1'>还差{{item.togetherNumberRedius}}人可开团</text>
+          <text class='together-list-item-2-1-2'>将在{{item.expireTime}}过期</text>
+        </view>
+      </view>
+      <text class='together-list-item-3'>去参团</text>
+    </view>
+  </view>
+  <view class='product-desc'>
+    <text class='product-desc-1'>商品描述</text>
+    <text class='product-desc-2' wx:for='{{product.productDesc}}' wx:key='id'>{{item}}</text>
+    <block wx:if='{{product.detailImages && product.detailImages.length>0}}'>
+      <text class='product-desc-1' style='margin-top:5px;'>商品详情</text>
+      <image mode='widthFix' style='width:{{W}}px;' wx:for='{{product.detailImages}}' wx:key='{{id}}' src='{{item}}'></image>
+    </block>
+    <block wx:if='{{product.showImages && product.showImages.length>0}}'>
+      <text class='product-desc-1'>买家秀</text>
+      <image mode='widthFix' style='width:{{W}}px;' wx:for='{{product.showImages}}' wx:key='{{id}}' src='{{item}}'></image>
+    </block>
+  </view>
+  <view class='fix-bottom' style='height:50px;justify-content: space-between;'>
+    <view class='fix-bottom-1' wx:if='{{isPreview==1}}'>
+      <view class='fix-bottom-1-1' wx:if='{{product.status != 1}}' data-productid='{{product.productId}}' catchtap='upProduct'>
+        <image src='/images/up_product.png'></image>
+        <text>上架</text>
+      </view>
+      <view class='fix-bottom-1-1' data-productid='{{product.productId}}' catchtap='edit'>
+        <image src='/images/edit.png'></image>
+        <text>编辑</text>
+      </view>
+    </view>
+    <view class='fix-bottom-1' wx:else>
+      <view class='fix-bottom-1-1' catchtap='goToShopIndex'>
+        <image src='/images/shop-index.png'></image>
+        <text>首页</text>
+      </view>
+      <view class='fix-bottom-1-1'>
+        <fbutton extImgStyle='height:25px;width:25px;' extStyle='width:25px;' adv='true' formType='submit' buttonImage='/images/contact-avatar.png' openType='contact' buttonText='' />
+      </view>
+
+      <!--
+      <view class='fix-bottom-1-1' catchtap='collect'>
+        <image wx:if='{{collect==1}}' src='/images/collect-1.png'></image>
+        <image wx:else src='/images/collect-0.png'></image>
+        <text>收藏</text>
+      </view>-->
+    </view>
+    <view class='fix-bottom-2'>
+      <view class='fix-bottom-2-1' data-together='0' catchtap='buy' wx:if='{{!together||together==0}}'>
+        <text>￥{{product.productNowPrice}}</text>
+        <text>单独购买</text>
+      </view>
+      <view wx:if='{{(!together||together==0)  && product.joinTogether==1}}' class='fix-bottom-2-2' catchtap='buy' data-together='1'>
+        <text>￥{{product.productTogetherPrice}}</text>
+        <text>一键开团</text>
+      </view>
+      <view wx:if='{{together==2 && product.joinTogether==1}}' class='fix-bottom-2-2' catchtap='buy' data-together='2' data-togetherid='{{togetherid}}'>
+        <text>￥{{product.productTogetherPrice}}</text>
+        <text>参加{{togetherMaster}}的团</text>
+      </view>
+    </view>
+  </view>
+  <view wx:if='{{showTop}}' class='topTips' bindtap='goTop'>
+    <image src='/images/top.png'></image>
+  </view>
+
+  <view wx:if='{{showGroup==1}}' class='product-group' style='width:{{W}}px;height:{{H}}px;' catchtap='hiddenGroup'>
+    <view class='product-group-info' style='width:{{W}}px;' catchtap='cancel'>
+      <view class='product-group-top' style='width:{{W}}px;'>
+        <image class='product-group-top-image' src='{{chosedGroup.groupImage}}'></image>
+        <text class='product-group-top-1'>￥{{showPrice}}</text>
+        <text class='product-group-top-2'>{{chosedGroup.groupName}}</text>
+        <image class='delete-image' catchtap='hiddenGroup' src='/images/delete.png'></image>
+      </view>
+      <scroll-view scroll-y='{{true}}' style='height:180px;padding 5px 0px;border-bottom:1px solid #F2F2F2'>
+        <view class='product-group-item' wx:for='{{product.groups}}' wx:key='{{id}}'>
+          <text wx:if='{{chosedGroup.groupId === item.groupId}}' class='group-selected'>{{item.groupName}}</text>
+          <text catchtap='selectGroup' data-groupindex='{{item.groupIndex}}' wx:else class='group-unselecte'>{{item.groupName}}</text>
+        </view>
+      </scroll-view>
+      <view class='product-group-number'>
+        <text>数量</text>
+        <slider style='width:{{W-100}}px' min='1' max='20' step='1' activeColor='#d70606' backgroundColor='#f2f2f2' show-value='{{true}}' value='{{buyNumber}}' bindchange='selectByNumber'></slider>
+      </view>
+      <view class='product-group-bottom' catchtap='goPay'>
+        <text>确定</text>
+      </view>
+    </view>
+  </view>
+
+  <view wx:if='{{showTips==1}}' style='width:{{W}}px;height:{{H}}px;background: rgba(0, 0, 0, 0.8);position: fixed;  top: 0px;  left: 0px;' catchtap='hiddenTips'>
+    <view style='width:{{W}}px; display: flex;  flex-direction: column;  position: fixed; bottom: 0px; left: 0px;  background: #fff; align-content: center; align-items: center;' catchtap='cancel'>
+      <view style='width:{{W}}px; position: relative;  height: 30px;  border-bottom:1px solid #e7f3d5;  padding-bottom:5px; '>
+        <text style=' position: absolute;  left: 10px;  top: 5px;  color: #000;  font-size: 16px;  margin: 5px;'>{{showTipsTitle}}</text>
+        <image style='height:25px;  width:25px;  position: absolute;  right: 5px;  top: 5px;' catchtap='hiddenTips' src='/images/delete.png'></image>
+      </view>
+      <view style='padding: 5px;'>
+        <text style='color: #000;  font-size: 14px;  '>{{showTipsDesc}}</text>
+      </view>
+      <scroll-view scroll-y='{{true}}' wx:if='{{showTipsList && showTipsList.length>0}}' style='height:120px;padding 5px 0px;border-bottom:1px solid #e7f3d5'>
+        <view style=' padding: 10px;' wx:for='{{showTipsList}}' wx:key='{{id}}'>
+          <text>{{item.communityName}}</text>
+        </view>
+      </scroll-view>
+      <view style='width: 100%;  height: 60px;  line-height: 50px;  background: #fff;  color: #000;  text-align: center;  font-size: 16px;' catchtap='hiddenTips'>
+        <text>我了解了</text>
+      </view>
+    </view>
+  </view>
+</block>
+<view class='blank' style='background:#fff;'></view>
+
+<view class='top' style='background:rgba(0,0,0,0)'>
+  <fbutton extImgStyle='height:30px;width:30px;transform: rotate(90deg);' extStyle='width:30px;' adv='true' formType='submit' buttonImage='/images/pull_down_icon.png' buttonText='' bind:fbutton-tap='goBack' />
+  <text class='top-title'></text>
+</view>

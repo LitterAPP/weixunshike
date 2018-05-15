@@ -1,0 +1,13 @@
+<!--components/dynamiciput/dynamiciput.wxml-->
+<view class='container'>
+  <view wx:for='{{inputs}}' wx:key='{{id}}' class='input-del-item'>
+    <view class='input-del-item-1'>
+    <input data-index='{{index}}' maxlength='{{maxLength}}' value='{{item.value}}' bindinput='inputed' placeholder='{{placeHolderText}}' type='{{inputType}}'></input>
+    <text   data-index='{{index}}'  catchtap='cleanInputText' class='cleanInputText'>x</text>
+    </view>
+    <text wx:if='{{index !=0}}' data-index='{{index}}' class='deleteInputText' catchtap='deleteInput'>删除</text>
+  </view>
+  <view class='input-add-item'>
+    <text class='addInputText' catchtap='addInput'>添加</text>
+  </view>
+</view>

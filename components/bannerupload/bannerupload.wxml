@@ -1,0 +1,13 @@
+<view class='container'>
+  <view wx:if='{{urlInfo.localUrl}}' class='banner'>
+    <image catchtap='preview' mode='{{mode}}' style='height:{{height}}px;width:{{width}}px;' src='{{urlInfo.localUrl}}'></image>
+    <image catchtap='deleteBanner' wx:if='{{admin && deleteImgSrc}}' class='deleteimg' src='{{deleteImgSrc}}'></image>
+    <button catchtap='deleteBanner' wx:if='{{admin && !deleteImgSrc}}' class='deletebtn' size='min' type='warn'>删除</button>
+  </view>
+  <view class='bannerupload' wx:else>
+    <text catchtap='uploadBanner' style='height:{{height}}px;line-height:{{height}}px;width:{{width}}px;'>{{uploadButtonText}}</text>
+  </view>
+  <view class='slot'>
+    <slot></slot>
+  </view>
+</view>

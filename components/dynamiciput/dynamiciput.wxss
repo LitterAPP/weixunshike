@@ -1,0 +1,67 @@
+/* components/dynamiciput/dynamiciput.wxss */
+.container{
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
+  align-items: flex-start;
+}
+.input-del-item{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-content: center;
+  justify-content: flex-start;
+  width: 100%;
+}
+.input-del-item-1{
+  position: relative;
+   display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-content: center;
+  justify-content: flex-start;
+   width: 85%;
+}
+.input-del-item-1 input{
+  height: 35px;
+  padding: 0px 5px; 
+  color: #000;
+  border: 1px solid #CCCCCC;
+  margin: 5px 0px;
+  margin-left:5px; 
+  width: 100%;
+}
+.deleteInputText{ 
+  text-decoration: underline;
+  color: red;
+  margin-left:5px; 
+}
+
+.input-add-item{
+   display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-content: center;
+  justify-content: flex-end;
+  align-self: flex-start;
+  padding-left:5px; 
+}
+
+.addInputText{
+  text-decoration: underline;
+  color: green;
+  margin-top:5px; 
+}
+
+.cleanInputText{
+   width: 35px;
+   height: 35px;    
+   background: #CCCCCC;
+   border: 1px solid #CCCCCC;
+   text-align: center;   
+   font-size: 15px;
+   color: #fff;  
+   line-height: 35px;
+   border-top-right-radius: 5px;
+   border-bottom-right-radius: 5px;
+}

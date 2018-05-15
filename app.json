@@ -1,0 +1,30 @@
+{
+  "pages": [
+    "pages/shop/shopIndex",
+    "pages/space/index",
+    "pages/shop/test",
+    "pages/shop/detail",
+    "pages/shop/pay",
+    "pages/shop/payresult",
+    "pages/shop/orderlist",
+    "pages/space/wallet",
+    "pages/shop/collect",
+    "pages/shop/orderdetail",
+    "pages/shop/categoryList",
+    "pages/shop/productList",
+    "pages/shop/webview",
+    "pages/moment/list",
+    "pages/wetao/comment",
+    "pages/space/login"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#FF8000",
+    "navigationBarTitleText": "Shop",
+    "navigationBarTextStyle": "light",
+    "navigationStyle": "custom"
+  },
+  "networkTimeout": {
+    "request": 60000,
+    "downloadFile": 10000
+  }
+}

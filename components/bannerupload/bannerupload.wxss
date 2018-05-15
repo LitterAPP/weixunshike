@@ -1,0 +1,41 @@
+.banner{
+  position: relative;
+}
+.deleteimg{
+  position: absolute;
+  right: 10px;
+  bottom:10px;
+  height: 30px;
+  width: 30px;
+}
+.deletebtn{
+  position: absolute;
+  right: 10px;
+  bottom:10px;
+  height: 30px;
+  width: 30px;
+  line-height: 30px;
+  font-size: 13px;
+  padding: 0px;
+  margin: 0px;
+}
+.container{
+   position: relative;
+}
+.slot{
+   position: absolute;
+   left: 5px;
+   bottom: 5px;
+}
+
+.bannerupload{
+  align-content: center;
+  align-items: center;
+}
+
+.bannerupload text{   
+  text-align: center;
+  display: block;
+  font-size: 13px;
+  color:#666;
+}

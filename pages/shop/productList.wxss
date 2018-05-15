@@ -1,0 +1,93 @@
+.sort {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  background: #fff;   
+  height: 35px;
+}
+
+.sort-price {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.sort-item {
+  margin: 5px 10px;
+}
+
+.normal-text {
+  color: #666;
+  font-size: 14px;
+}
+
+.activite-text {
+  color: #ff7f00;
+  font-size: 14px;
+}
+
+.list {
+}
+
+.item {
+  display: inline-block;
+  margin-top: 5px;
+}
+
+.item-title text {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  text-overflow: ellipsis;
+  font-size: 14px;   
+}
+
+.item-price{
+  margin: 5px;
+  padding-bottom:5px; 
+}
+
+.item-price-1{
+  font-size: 12px;
+  color: #FF4040;
+}
+
+.item-price-2{
+  font-size: 14px;
+  color: #FF4040;
+}
+
+.item-price-3{
+  font-size: 14px;
+  color: #888;
+  margin-left: 10px; 
+}
+
+.nomore{
+  font-size: 13px;
+  color: #CDB38B;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+}
+
+.pageInfo{
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  background: rgba(255, 255, 255,0.6);
+  font-size: 12px;
+  color: #000; 
+  border-radius: 50%;
+  height: 38px;
+  line-height: 38px;
+  width: 38px;
+  text-align: center;
+}

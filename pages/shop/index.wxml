@@ -1,0 +1,59 @@
+<view class='item' wx:for='{{list}}' wx:key="{{id}}" bindtap='goProductDetail' data-productId='{{item.productId}}'>
+  <view class='banner'>
+    <image mode='widthFix' style="width:{{W}}px;" src='{{item.productBanner}}'></image>
+    <view class='community' wx:if='{{item.communities && item.communities.length>0}}'>
+      <text catchtap='communityDesc' data-idx='{{index}}'>小区合作</text>
+    </view>
+    <view class='pick' wx:if='{{item.platformChecked && item.platformChecked==1}}'>
+      <text catchtap='pingtaiyanxuanDesc' data-idx='{{index}}'>平台严选</text>
+    </view>
+  </view>
+  <view class='title'>
+    <text>{{item.productName}}</text>
+  </view>
+  <view class='info'>
+    <view class='info1'>
+      <text class='info1-price-1'>￥{{item.productNowPrice}}</text>
+      <text class='info1-price-2'>￥{{item.productOriginPrice}}</text>
+    </view>
+    <view class='info2'>
+      <text class='info2-1'>已团{{item.togetherSales}}万件</text>
+      <view class='info2-image'>
+        <image style='position: absolute;top:3px;left:0px;' src='{{item.togethers[0]}}'></image>
+        <image style='position: absolute;top:15px;left:0px;' src='{{item.togethers[1]}}'></image>
+      </view>
+      <view class='togetherBtn'>
+        <text wx:if='{{item.joinTogether==1}}'>开团更优惠</text>
+        <text wx:else>下单享折扣</text>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view style='display:flex;flex-direction: column;align-content: center;' wx:if='{{onloading}}'>
+  <text style='text-align:center;color:#949491;font-size:12px;'>正在加载...</text>
+</view>
+<view style='display:flex;flex-direction: column;align-content: center;' wx:if='{{nomore && !onloading}}'>
+  <text style='text-align:center;color:#949491;font-size:12px;'>-没有更多商品了-</text>
+</view>
+
+
+<view wx:if='{{showGroup==1}}' class='product-group' style='width:{{W}}px;height:{{H}}px;background: rgba(0, 0, 0, 0.8);position: fixed;  top: 0px;  left: 0px;' catchtap='hiddenGroup'>
+  <view class='product-group-info' style='width:{{W}}px; display: flex;  flex-direction: column;  position: fixed; bottom: 0px; left: 0px;  background: #fff; align-content: center; align-items: center;' catchtap='cancel'>
+    <view class='product-group-top' style='width:{{W}}px; position: relative;  height: 30px;  border-bottom:1px solid #e7f3d5;  padding-bottom:5px; '>
+      <text style=' position: absolute;  left: 10px;  top: 5px;  color: #000;  font-size: 16px;  margin: 5px;'>{{showTipsTitle}}</text>
+      <image style='height:25px;  width:25px;  position: absolute;  right: 5px;  top: 5px;' catchtap='hiddenGroup' src='/images/delete.png'></image>
+    </view>
+    <view style='padding: 5px;'>
+      <text style='color: #000;  font-size: 14px;  '>{{showTipsDesc}}</text>
+    </view>
+    <scroll-view scroll-y='{{true}}' wx:if='{{showTipsList && showTipsList.length>0}}' style='height:120px;padding 5px 0px;border-bottom:1px solid #e7f3d5'>
+      <view style=' padding: 10px;' wx:for='{{showTipsList}}' wx:key='{{id}}'>
+        <text>{{item.communityName}}</text>
+      </view>
+    </scroll-view>
+    <view style='width: 100%;  height: 60px;  line-height: 50px;  background: #fff;  color: #000;  text-align: center;  font-size: 16px;' catchtap='hiddenGroup'>
+      <text>我了解了</text>
+    </view>
+  </view>
+</view>

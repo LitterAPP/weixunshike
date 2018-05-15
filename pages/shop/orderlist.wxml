@@ -1,0 +1,117 @@
+<block wx:if='{{pageshow}}'>
+  <view class='topPlaceHolder'>
+  </view>
+  <view class='order-list'>
+    <!--
+    <view class='seller-switch' wx:if='{{isSeller}}'>
+      <text>切换为卖家</text>
+      <switch checked='{{imSeller}}' bindchange='sellerSwitch'></switch>
+    </view>
+    -->
+    <view wx:if='{{!isSeller || !imSeller}}' class='order-bar'>
+      <view hover-class='click-hover' catchtap='barSelected' data-status='-1'>
+        <image wx:if='{{status==-1}}' src='/images/order-all-1.png'></image>
+        <image wx:else src='/images/order-all.png'></image>
+        <text wx:if='{{status==-1}}' style='color:#d70606;border-bottom:1px solid #d70606;'>全部</text>
+        <text wx:else>全部</text>
+      </view>
+      <view hover-class='click-hover' catchtap='barSelected' data-status='0'>
+        <image wx:if='{{status==0}}' src='/images/order-wait-pay-1.png'></image>
+        <image wx:else src='/images/order-wait-pay.png'></image>
+        <text wx:if='{{status==0}}' style='color:#d70606;border-bottom:1px solid #d70606;'>待支付</text>
+        <text wx:else>待支付</text>
+      </view>
+      <view hover-class='click-hover' catchtap='barSelected' data-status='-5'>
+        <image wx:if='{{status==-5}}' src='/images/refund-1.png'></image>
+        <image wx:else src='/images/refund-0.png'></image>
+        <text wx:if='{{status==-5}}' style='color:#d70606;border-bottom:1px solid #d70606;'>退款</text>
+        <text wx:else>退款</text>
+      </view>
+      <view hover-class='click-hover' catchtap='barSelected' data-status='1'>
+        <image wx:if='{{status==1}}' src='/images/order-wait-send-1.png'></image>
+        <image wx:else src='/images/order-wait-send.png'></image>
+        <text wx:if='{{status==1}}' style='color:#d70606;border-bottom:1px solid #d70606;'>待发货</text>
+        <text wx:else>待发货</text>
+      </view>
+      <view hover-class='click-hover' catchtap='barSelected' data-status='7'>
+        <image wx:if='{{status==7}}' src='/images/order-wait-confirm-1.png'></image>
+        <image wx:else src='/images/order-wait-confirm.png'></image>
+        <text wx:if='{{status==7}}' style='color:#d70606;border-bottom:1px solid #d70606;'>待收货</text>
+        <text wx:else>待收货</text>
+      </view>
+    </view>
+    <view wx:else class='order-bar'>
+      <view hover-class='click-hover' catchtap='barSelected' data-status='-1'>
+        <image wx:if='{{status==-1}}' src='/images/order-all-1.png'></image>
+        <image wx:else src='/images/order-all.png'></image>
+        <text wx:if='{{status==-1}}' style='color:#d70606;border-bottom:1px solid #d70606;'>全部</text>
+        <text wx:else>全部</text>
+      </view>
+      <view hover-class='click-hover' catchtap='barSelected' data-status='0'>
+        <image wx:if='{{status==0}}' src='/images/order-wait-pay-1.png'></image>
+        <image wx:else src='/images/order-wait-pay.png'></image>
+        <text wx:if='{{status==0}}' style='color:#d70606;border-bottom:1px solid #d70606;'>待支付</text>
+        <text wx:else>待支付</text>
+      </view>
+      <view hover-class='click-hover' catchtap='barSelected' data-status='1'>
+        <image wx:if='{{status==1}}' src='/images/order-wait-send-1.png'></image>
+        <image wx:else src='/images/order-wait-send.png'></image>
+        <text wx:if='{{status==1}}' style='color:#d70606;border-bottom:1px solid #d70606;'>待发货</text>
+        <text wx:else>待发货</text>
+      </view>
+    </view>
+    <view class='order-item' wx:for='{{list}}' wx:key='{{id}}'>
+      <view class='order-item-1' hover-class='click-hover' catchtap='goOrderDetail' data-orderid='{{item.orderId}}'>
+        <image src='{{item.groupImg}}'></image>
+        <view class='order-item-1-2'>
+          <view class='order-item-1-2-1' style='width:{{W-72}}px;'>
+            <text style='width:{{W-72-50}}px;'>{{item.productName}}</text>
+            <text style='width:50px;font-size:13px;'>￥{{item.groupPrice}}</text>
+          </view>
+          <view class='order-item-1-2-1' style='width:{{W-72}}px;'>
+            <text style='width:{{W-72-50}}px;color:#666;font-size:12px;'>{{item.groupName}}</text>
+            <text style='width:50px;color:#666;font-size:12px;'>x{{item.buyNum}}</text>
+          </view>
+        </view>
+      </view>
+      <view class='order-item-2'>
+        <text>实付：￥{{item.totalPay}}</text>
+      </view>
+      <view class='order-item-2' style='margin 5px 0px;'>
+        <view class='order-status'>
+          <text wx:if='{{item.orderStatus==0}}'>待支付</text>
+          <text wx:if='{{item.orderStatus==1}}'>支付成功·待发货</text>
+          <text wx:if='{{item.orderStatus==2}}'>支付取消</text>
+          <text wx:if='{{item.orderStatus==3}}'>支付失败</text>
+          <text wx:if='{{item.orderStatus==4}}'>已支付·拼团中...</text>
+          <text wx:if='{{item.orderStatus==5}}'>已退款</text>
+          <text wx:if='{{item.orderStatus==55}}'>退款中</text>
+          <text wx:if='{{item.orderStatus==555}}'>退款审核中</text>
+          <text wx:if='{{item.orderStatus==5555}}'>退款审核失败</text>
+          <text wx:if='{{item.orderStatus==55555}}'>退款失败</text>
+          <text wx:if='{{item.orderStatus==6}}'>拼团成功·待发货</text>
+          <text wx:if='{{item.orderStatus==7}}'>货品已快递寄出</text>
+          <text wx:if='{{item.orderStatus==8}}'>交易成功·快递已签收</text>
+          <text wx:if='{{item.orderStatus==9}}'>交易成功·您已收货</text>
+          <text wx:if='{{item.orderStatus==10}}'>支付成功·等待抽奖</text>
+          <text wx:if='{{item.orderStatus==11}}'>抽奖完成·恭喜中{{item.prize}}</text>
+          <text wx:if='{{item.orderStatus==12}}'>抽奖完成·很遗憾，未中奖</text>
+          <text wx:if='{{item.orderStatus==14}}'>未成团·已退款到余额</text>
+        </view>
+        <navigator style='color:#666;font-size:12px;padding:5px 10px;' url="/pages/shop/orderdetail?orderId={{item.orderId}}" hover-class="click-hover">详情</navigator>
+        <navigator wx:if='{{!imSeller}}' style='color:#666;font-size:12px;padding:5px 10px;' url="/pages/shop/detail?productId={{item.productId}}" hover-class="click-hover">再次购买</navigator>
+      </view>
+    </view>
+
+    <view style='display:flex;flex-direction: column;align-content: center;' wx:if='{{onloading}}'>
+      <text style='text-align:center;color:#949491;font-size:12px;'>正在加载...</text>
+    </view>
+    <view style='display:flex;flex-direction: column;align-content: center;' wx:if='{{nomore && !onloading}}'>
+      <text style='text-align:center;color:#949491;font-size:12px;'>-没有更多订单了-</text>
+    </view>
+  </view>
+  <view class='top'>
+    <fbutton extImgStyle='height:30px;width:30px;transform: rotate(90deg);' extStyle='width:30px;' adv='true' formType='submit' buttonImage='/images/pull_down_icon.png' buttonText='' bind:fbutton-tap='goBack' />
+    <text class='top-title'>我的订单</text>
+  </view>
+</block>

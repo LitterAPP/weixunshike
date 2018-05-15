@@ -1,0 +1,45 @@
+.card{
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  align-items: center;
+  justify-content: space-between;
+}
+.card-1{
+  margin: 5px 0px;
+}
+.card-1 text{
+  font-size: 13px;
+  color: #ccc;
+}
+.card-1 input{
+  font-size: 16px;
+  color: #000;
+  border-bottom:1px solid #ccc; 
+}
+
+.card-2{
+   display: flex;
+  flex-direction: row;
+  align-content: center;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.send-btn-1{
+  font-size: 15px;
+  background: #9ACD32;
+  color: #fff;
+  padding: 5px;
+  border-radius: 15px;
+}
+.send-btn-0{
+  font-size: 15px;
+  background: #cccccc;
+  color: #fff;
+  padding: 5px;
+  border-radius: 15px;
+}
+.click-hover{
+  background: #ADFF2F;
+}

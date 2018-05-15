@@ -1,0 +1,59 @@
+{
+	"description": "项目配置文件。",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"libVersion": "1.9.98",
+	"appid": "wx9ecd278ad19f6328",
+	"projectname": "weixunshike",
+	"isGameTourist": false,
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 2,
+			"list": [
+				{
+					"id": -1,
+					"name": "强制显示活动弹窗",
+					"pathName": "pages/shop/shopIndex",
+					"query": "forceShow=1"
+				},
+				{
+					"id": -1,
+					"name": "商品详情",
+					"pathName": "pages/shop/detail",
+					"query": "productId=PRO-20180510175833-1765"
+				},
+				{
+					"id": -1,
+					"name": "订单详情",
+					"pathName": "pages/shop/orderdetail",
+					"query": "orderId=QL-20180514114737-1708"
+				}
+			]
+		}
+	}
+}

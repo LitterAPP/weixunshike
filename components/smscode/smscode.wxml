@@ -1,0 +1,18 @@
+<view class='card'>
+  <view class='card-1'>
+    <text>手机号码</text>
+    <input bindblur='inputMobile'   type='number' value='{{mobile}}' placeholder='请输入手机号码'></input>
+  </view>
+</view>
+
+<view class='card'>
+  <view class='card-1'>
+    <text>验证码</text>
+    <view class='card-2'>
+      <input bindblur='inputSmsCode' type='number' value='{{smsCode}}' placeholder='请输入短信验证码'></input>
+      <view wx:if='{{!sent}}' catchtap='sendSmsCode'  hover-class='click-hover' class='send-btn-1'>{{sendBtnText}}</view>
+      <view wx:else  class='send-btn-0'>{{sendBtnText}}</view>
+    </view>
+  </view>
+
+</view>

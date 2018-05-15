@@ -1,0 +1,30 @@
+<!--属性校验-->
+<block wx:if="{{mode!='static' && mode!='remote'}}">
+  autocomplete组件的mode属性只允许为static、remote两种
+</block>
+<block wx:if="{{mode==='static' && !source}}">
+  autocomplete组件的mode属性为static时，必须提供source数据源
+</block>
+<block wx:if="{{mode==='remote' && !sourceUrl}}">
+  autocomplete组件的mode属性为remote时，必须提供sourceUrl数据源
+</block>
+<view class='container' wx:if='{{!showScroll}}'>
+  <input catchtap='showScroll' disabled='{{true}}' value='{{selectedItem.value}}' placeholder='{{placeholderText}}'></input>   
+</view>
+<view wx:else class='container-float-mask' catchtap='maskClick'>
+  <view class='container-float'>
+    <input bindfocus='inputfocus' focus='{{true}}' bindinput='inputed' value='' placeholder='{{placeholderText}}'></input>
+    <scroll-view wx:if='{{showScroll}}' scroll-y style="height:160px;" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
+      <block wx:if='{{source && source.length>0}}'>
+        <view id="to_view_{{item.id}}" data-index='{{index}}' catchtap='itemSelected' wx:for='{{source}}' wx:key='{{id}}' class="scroll-view-item" hover-class='scroll-view-item-hover'>
+          <text>{{item.value}}</text>
+        </view>
+      </block>
+      <block wx:else>
+        <view class="scroll-view-item" hover-class='scroll-view-item-hover'>
+          <text>无数据</text>
+        </view>
+      </block>
+    </scroll-view>
+  </view>
+</view>

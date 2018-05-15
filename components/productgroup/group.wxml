@@ -1,0 +1,28 @@
+<!--components/dynamiciput/dynamiciput.wxml-->
+<view class='container'>
+  <view wx:for='{{groups}}' wx:key='{{id}}' class='input-del-item'>
+    <view class='input-del-item-1'>
+      <input data-index='{{index}}' maxlength='-1' value='{{item.title}}' bindinput='inputedTitle' placeholder='{{placeHolderTitleText}}' type='text'></input>
+      <text data-index='{{index}}' catchtap='cleanTitleInputText' class='cleanInputText'>x</text>
+    </view>
+    <view class='price-item'>
+      <input data-index='{{index}}' maxlength='9' value='{{item.price1}}' bindinput='inputedPrice1' placeholder='{{placeHolderPriceFirText}}' type='digit'></input>
+      <input data-index='{{index}}' style='border-left:0px;'  maxlength='9' value='{{item.price2}}' bindinput='inputedPrice2' placeholder='{{placeHolderPriceSecText}}' type='digit'></input>
+    </view>
+    <view class='image-item'>
+      <view class='logopreview' wx:if='{{item.logo}}'>
+        <image catchtap='preview' mode='aspectFit' style='height:100px;width:100px;' src='{{item.logo}}' data-index='{{index}}'></image>
+        <image catchtap='deleteLogo' wx:if='{{admin && deleteImgSrc}}' class='deleteimg' src='{{deleteImgSrc}}' data-index='{{index}}'></image>
+        <button catchtap='deleteLogo' data-index='{{index}}' wx:if='{{admin && !deleteImgSrc}}' class='deletebtn' size='min' type='warn'>删除</button>
+      </view>
+      <view class='bannerupload' wx:else>
+        <text catchtap='uploadLogo' data-index='{{index}}' style='height:100px;width:100px;display:inline-block;background:#ccc;text-align:center;'>{{uploadButtonText}}</text>
+      </view>
+    </view>
+    <view class='input-add-item'>
+      <text class='addInputText' wx:if='{{index == (groups.length-1) }}' catchtap='addInput'>添加</text>
+      <text wx:if='{{index !=0}}' data-index='{{index}}' class='deleteInputText' catchtap='deleteInput'>删除</text>
+    </view>
+  </view>
+
+</view>

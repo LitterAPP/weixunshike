@@ -1,0 +1,57 @@
+page{
+  background: #fff;
+}
+.item{
+  display: flex;
+  flex-direction: row;  
+  align-content: flex-start;
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin: 10px;
+  border-bottom: 1px solid #F0FFF0;
+}
+.avatar{
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+}
+.item-left{
+  width: 45px;
+  display: flex;
+  flex-direction: column;  
+  align-content: flex-start;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.item-right{
+  display: flex;
+  flex-direction: column;  
+  align-content: flex-start;
+  align-items: flex-start;
+  justify-content: center;
+  margin-left: 10px;
+}
+.nick-name{
+  font-size: 14px;
+  font-weight: bold;
+  color: #000;
+}
+.time{
+  font-size: 13px;
+  color: #cbcbcb;
+  
+}
+.comment{
+   font-size: 14px; 
+  color: #000;
+  margin:10px 0px;
+  word-break:break-all; 
+}
+
+.item-delete{
+  display: flex;
+  flex-direction: column;  
+  align-content: flex-start;
+  align-items: flex-start;
+  justify-content: center;
+}

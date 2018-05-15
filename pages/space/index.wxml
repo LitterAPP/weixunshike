@@ -1,0 +1,51 @@
+<view class='topPlaceHolder'>
+</view>
+<view class='header'>
+  <view class='userinfo'>
+    <image wx:if="{{userinfo.avatarUrl===''}}" src='/images/icon_cx.png'></image>
+    <image wx:else src='{{userinfo.avatarUrl}}'></image>
+    <text bindtap='authorize' wx:if="{{userinfo.nickName==='默认'}}">微信未授权,点击授权</text>
+    <text wx:else>{{userinfo.nickName}}</text>
+  </view>
+</view>
+
+<view class='item-nav'>
+  <view class='item' style='margin-bottom:1px;' hover-class='click-hover' bindtap='goMyOrder'>
+    <view class='left'>
+      <image src='/images/dd.png'></image>
+      <text>我的订单</text>
+    </view>
+    <image src='/images/arrow-right.png'></image>
+  </view>
+  <view class='item' style='margin-bottom:10px;' hover-stop-propagation='{{true}}' hover-class='click-hover' bindtap='goMyWallet'>
+    <view class='left'>
+      <image src='/images/qb.png'></image>
+      <text>我的钱包</text>
+    </view>
+    <image src='/images/arrow-right.png'></image>
+  </view>
+
+  <view class='item' style='margin-bottom:10px;margin-top:10px;' hover-stop-propagation='{{true}}' hover-class='click-hover' bindtap='changeAddress'>
+    <view class='left'>
+      <image src='/images/address.png'></image>
+      <text>收货地址</text>
+    </view>
+    <image src='/images/arrow-right.png'></image>
+  </view>
+  <!--
+    <view class='item' style='margin-bottom:1px;'  hover-class='click-hover' bindtap='goMyCollected'>
+    <view class='left'>
+      <image src='/images/sc.png'></image>
+      <text>我的收藏商品</text>
+    </view>
+    <image src='/images/arrow-right.png'></image>
+  </view>
+  --> 
+</view>
+
+<view class='top' style='background:#451920;'>
+  <fbutton extImgStyle='height:30px;width:30px;transform: rotate(90deg);' extStyle='width:30px;' adv='true' formType='submit' buttonImage='/images/pull_down_icon.png' buttonText='' bind:fbutton-tap='goBack' />
+  <text class='top-title'></text>
+</view>
+
+ <fbutton class='contact-avatar' extImgStyle='height:25px;width:25px;' extStyle='width:25px;' adv='true' formType='submit' buttonImage='/images/contact-avatar.png' openType='contact' buttonText='' />

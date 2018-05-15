@@ -1,0 +1,91 @@
+<view class='topPlaceHolder'>
+</view>
+<!--
+<view class='moment'>
+  <image catchtap='sendMonent' catchlongtap='sendMonentLongTap' src='/images/moment-btn.png'></image>
+</view>
+-->
+<view class='container'>
+  <view class='item' wx:for='{{list}}' wx:key='{{id}}'>
+    <view wx:if='{{item.type==0}}' class='master' hover-class='click-hover' data-menuid='{{item.id}}' bindtap='goMenuDetail'>
+      <view class='avatar'>
+        <image src='{{item.user.avatarUrl}}'></image>
+      </view>
+      <view class='content'>
+        <text class='nickname'>{{item.user.nickName}}</text>
+        <text class='menu-title'>{{item.menuName}}</text>
+        <image mode='aspectFill' style='width:{{W-70}}px;height:{{(W-70)/2}}px;' src='{{item.banner}}'></image>
+        <view class='content-bottom'>
+          <text class='time'>{{item.time}}</text>
+          <image class='comment-btn' catchtap='showInputBox' data-menuid='{{item.id}}' src='/images/comment_btn.png'></image>
+        </view>
+      </view>
+    </view>
+    <view wx:if='{{item.type==1}}' class='master'  data-menuid='{{item.id}}'>
+      <view class='avatar'>
+        <image src='{{item.user.avatarUrl}}'></image>
+      </view>
+      <view class='content'>
+        <text class='nickname'>{{item.user.nickName}}</text>
+        <text class='menu-title'>{{item.introduction}}</text>  
+        <view wx:if='{{item.pics && item.pics.length>0}}' class='photos-row'>
+          <block wx:for='{{item.pics}}' wx:key='{{id}}' wx:for-item="picsitem">
+          <image bindtap='previewPhoto' data-index='{{index}}' data-pics='{{item.pics}}' mode='aspectFill' style='height:{{(W-105)/4}}px;width:{{(W-105)/4}}px;' src='{{picsitem}}'></image>
+          </block>
+        </view> 
+        <view class='content-bottom'>
+          <text class='time'>{{item.time}}</text>
+          <image class='comment-btn' catchtap='showInputBox' data-menuid='{{item.id}}' src='/images/comment_btn.png'></image>
+        </view>
+      </view>
+    </view>
+
+    <view class='comments'>
+      <view wx:if='{{item.favors.length>0}}' class='favor'>
+        <image src='/images/comment_favor.png'></image>
+        <view style='width:{{W-40}}px;'>
+          <text decode='{{true}}' wx:for='{{item.favors}}' wx:key='{{id}}'>{{item.userName}}&nbsp;</text>
+        </view>
+      </view>
+      <block wx:if='{{item.comments.length>0}}'>
+        <view class='comment-list' wx:for='{{item.comments}}' wx:key='{{id}}'>
+          <view class='comment-list-left'>
+            <image wx:if='{{index==0}}' src='/images/comment_icon.png'></image>
+            <image wx:else src=''></image>
+            <view class='comment-list-right'>
+              <image src='{{item.userAvatar}}'></image>
+              <view class='comment-list-right-r' style='width:{{W-65}}px;'>
+                <view class='comment-list-right-r-l'>
+                  <text class='comment-list-left-nn'>{{item.userName}}</text>
+                  <text class='comment-list-right-text'>{{item.timeDesc}}</text>
+                </view>
+                <text class='comment-list-left-cmt'>{{item.comment}}</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>
+
+<view style='display:flex;flex-direction: column;align-content: center;' wx:if='{{nomore && !onloading}}'>
+  <text style='text-align:center;color:#949491;font-size:12px;'>-没有更多了-</text>
+</view>
+<view style='display:flex;flex-direction: column;align-content: center;' wx:if='{{ onloading}}'>
+  <text style='text-align:center;color:#949491;font-size:12px;'>正在加载...</text>
+</view>
+
+<view class='fix-bottom' wx:if='{{showInputBox}}'>
+  <view class='input-box'>
+    <input name='comment' style='width:{{W-60}}px;' confirm-type='send' placeholder='评论' maxlength='100' focus='{{inputfocus}}' bindconfirm='commentSend'></input>
+    <image wx:if='{{favored}}' src='/images/comment_favored.png' bindtap='favorSend'></image>
+    <image wx:else src='/images/comment_favor.png' bindtap='favorSend'></image>
+  </view>
+</view> 
+
+<view class='top' style='background:#fff;'>
+  <fbutton extImgStyle='height:30px;width:30px;transform: rotate(90deg);' extStyle='width:30px;' adv='true' formType='submit' buttonImage='/images/pull_down_icon.png' buttonText='' bind:fbutton-tap='goBack' />   
+  <text>微淘</text>
+  <image  src='/images/photo.png' style="height:30px;width:30px;margin-left:{{W/2 - 30 - 40}}px;" catchtap='sendMonent' catchlongtap='sendMonentLongTap'></image>
+</view>

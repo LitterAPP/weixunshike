@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "fbutton": "/components/formbutton/fbutton"
+  },
+  "enablePullDownRefresh": true
+}

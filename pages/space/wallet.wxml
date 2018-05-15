@@ -1,0 +1,49 @@
+
+<block wx:if='{{pageshow}}'>
+  <view class='topPlaceHolder'>
+</view>
+
+  <view class='header'>
+    <view class='header-1'>
+      <text style='color:#666;font-size:13px;'>账户余额</text>
+      <text style='color:#FFA500;font-size:18px;'>¥{{account.basicAccountAmount}}</text>
+    </view>
+  </view>
+  <view class='tool-bar'>
+    <view class='tool-bar-1' wx:if='{{bar==1}}' style='border-right: 1px solid #f2f2f2;border-bottom:1px solid #d70606;width:{{W/2}}px;'>
+      <text style='color:#000;'>有效·优惠券（共{{account.validCouponCount}}张）</text>
+    </view>
+    <view class='tool-bar-1' catchtap='barClick' data-bar='1' wx:else style='border-right: 1px solid #f2f2f2;width:{{W/2}}px;'>
+      <text>有效·优惠券（共{{account.validCouponCount}}张）</text>
+    </view>
+
+    <view class='tool-bar-1' wx:if='{{bar==2}}' style='width:{{W/2}}px;border-bottom:1px solid #d70606;'>
+      <text style='color:#000;'>过期·优惠券</text>
+    </view>
+    <view class='tool-bar-1' catchtap='barClick' data-bar='2' wx:else style='width:{{W/2}}px;'>
+      <text>过期·优惠券</text>
+    </view>
+  </view>
+
+  <scroll-view scroll-y scroll-with-animation enable-back-to-top bindscrolltolower='loadmore' style='height:{{H-180-80}}px;'>
+    <view class='coupon-item' wx:for='{{coupons}}' wx:key='{{id}}'>
+      <image wx:if='{{bar==1}}' src='/images/coupon_1.png'></image>
+      <image wx:if='{{bar==2}}' src='/images/coupon_0.png'></image>
+      <text wx:if='{{bar==1}}'  style='color:#FFA500;width:60px;margin:5px;font-size:16px;'>￥{{item.accountAmount}}</text>
+      <text wx:if='{{bar==2}}'  style='color:#666;width:60px;margin:5px;font-size:14px;'>￥{{item.accountAmount}}</text>      
+      <view wx:if='{{bar==1}}' class='coupon-item-1' style='width:{{W-140}}px;border-left:1px dotted #f2f2f2;'>
+        <text style='color:#666;font-size:13px;'>{{item.accountName}}</text>
+        <text style='color:#1afa29;font-size:10px;'>有效期：{{item.expireTime}}</text>
+      </view>
+      <view wx:if='{{bar==2}}' class='coupon-item-1' style='width:{{W-140}}px;border-left:1px dotted #f2f2f2;'>
+        <text style='color:#666;font-size:13px;'>{{item.accountName}}</text>
+        <text style='color:#666;font-size:10px;'>有效期：{{item.expireTime}}</text>
+      </view>
+    </view>
+  </scroll-view>
+</block>
+
+<view class='top' style='background:#451920;'>
+  <fbutton extImgStyle='height:30px;width:30px;transform: rotate(90deg);' extStyle='width:30px;' adv='true' formType='submit' buttonImage='/images/pull_down_icon.png' buttonText='' bind:fbutton-tap='goBack' />
+  <text class='top-title'>我的钱包</text>
+</view>
