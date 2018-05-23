@@ -30,6 +30,7 @@ Page({
       })
     }
   },
+  
   pay: function () {
     var that = this
     if (!that.data.address || !that.data.address.userName || !that.data.address.telNumber){

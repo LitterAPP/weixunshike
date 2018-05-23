@@ -15,7 +15,9 @@
     "pages/shop/webview",
     "pages/moment/list",
     "pages/wetao/comment",
-    "pages/space/login"
+    "pages/space/login",
+    "pages/shop/myCarList",
+    "pages/shop/carPay"
   ],
   "window": {
     "navigationBarBackgroundColor": "#FF8000",

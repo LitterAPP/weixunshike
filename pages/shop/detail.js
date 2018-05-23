@@ -38,6 +38,11 @@ Page({
       })
     }
   },
+  goToMyShopCar:function(){
+    wx.navigateTo({
+      url: '/pages/shop/myCarList',
+    })
+  },
   upProduct:function(e){
     util.showToast('上架中...')
     var productId = e.currentTarget.dataset.productid
@@ -105,7 +110,24 @@ Page({
       url: '/pages/shop/detail?productId=' + productId,
     })
   },
-
+  addToCar:function(){
+    var that = this
+    util.checkLogin(false, function () {
+      util.GET(app.globalData.host + '/shop/addTocar',
+        {
+          session: wx.getStorageSync('session'),
+          productId: that.data.product.productId,
+          groupId: that.data.chosedGroup.groupId,
+          buyNum: that.data.buyNumber
+        }, function (data) {
+          if (data && data.code == 1) {
+            util.showToast('成功加入')
+          } else {
+            util.showToast('加入失败')
+          }
+        })
+    })
+  },
   goPay: function () {
     var that = this
     var params = {

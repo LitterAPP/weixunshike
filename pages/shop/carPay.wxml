@@ -1,0 +1,94 @@
+
+<wxs module="number">
+var ToFix=function(d,n){
+  if(d<=0){
+    return 0;
+  }
+  return Math.round(d*100)/100;
+}
+module.exports = {
+  toFix: ToFix
+};
+</wxs>
+<view class='topPlaceHolder'>
+</view>
+<block wx:if='{{result && result.list && result.list.length>0}}'>
+  <scroll-view enable-back-to-top scroll-y style='height:{{H-130}}px;'>
+    <view class='xinfeng'>
+      <image style='width:{{W}}px;' src='/images/xinfeng.png'></image>
+    </view>
+    <view class='address'>
+      <image src='/images/address.png'></image>
+      <view class='adderss-info' wx:if='{{address}}'>
+        <text style=''>{{address.userName}}({{address.telNumber}})</text>
+        <text style='width:{{W-100}}px;color:#000;'>{{address.provinceName}}{{address.cityName}}{{address.countyName}}{{address.detailInfo}}</text>
+      </view>
+      <view class='adderss-info' wx:else>
+        <text>请点击+，选择收货地址</text>
+      </view>
+
+      <image catchtap='changeAddress' src='/images/add.png'></image>
+    </view>
+    <view class='xinfeng'>
+      <image style='width:{{W}}px;' src='/images/xinfeng.png'></image>
+    </view>
+
+    <view class='car-item-wrap' wx:for='{{result.list}}' wx:key='{{id}}'>
+
+      <view class='car-item'>
+        <!--
+        <view class='shop-info'>
+          <image mode='widthFix' class='shop-avatar' src='/images/apply.png'></image>
+          <text>{{item.}}</text>
+        </view>-->
+        <view class='product-info' catchtap='goProductDetail' data-pid='{{item.productId}}'>
+          <image mode='widthFix' src='{{item.groupImgage}}' class='product-img'></image>
+          <view class='product-info-1'>
+            <text style='width:{{W-110}}px;'>{{item.productName}}</text>
+            <view class='product-info-1-1'>
+              <text style='width:{{W-110}}px;'>{{item.groupName}}</text>
+            </view>
+            <view class='price-del' style='width:{{W-110}}px;'>
+              <text style='margin-top:5px;color:#F08080;'>￥{{item.singPrice}}</text>
+              <text style='margin-top:5px;color:#000;'>x{{item.buyNum}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view>
+      <input style='padding:5px;background:#fff;margin-top:5px;font-size:13px;' bindinput='memoInput'  placeholder='备注信息'></input>
+    </view>
+  </scroll-view>
+</block>
+
+<view class='blank' style=''></view>
+<view wx:if='{{result && result.list && result.list.length>0}}' class='fix-bottom' style='height:50px;border-top:1px solid #d70606;justify-content:space-between;'>
+  <view style='margin-left:5px;' data-idx='-2' wx:if='{{hasCoupon}}' class='seleced-all'>
+    <switch color='#FF6347' bindchange='useCouponSwitch'></switch>
+    <text style='width:55px;text-align:center;'>不用券</text>
+  </view>
+
+  <view class='fix-bottom-1' style='width:{{W-60}}px;font-size:13px;'>
+    <view class='column-flex-end'>
+      <view>
+        <text class='fix-bottom-1-1' style='font-size:11px;'>合计：</text>
+        <text class='fix-bottom-1-2' style='font-size:12px;color:#FF6347;'>￥{{result.sumAmount}}</text>
+        <text wx:if='{{coupon && coupon.couponAmount>0}}' class='fix-bottom-1-2' style='color:#FF6347;font-size:12px;'>-{{coupon.couponAmount}}(券)</text>
+         <text wx:if='{{result.account && result.account.amount>=0}}' class='fix-bottom-1-2' style='color:#FF6347;font-size:12px;'>-{{result.account.amount}}(额)</text>
+      </view>
+      <view>
+        <text class='fix-bottom-1-1' style='font-size:11px;'>微信付：</text>
+        <text class='fix-bottom-1-2' style='color:#DC143C;font-size:12px;'>￥{{number.toFix(result.sumAmount-coupon.couponAmount-result.account.amount,2)}}
+         </text>
+      </view>
+
+    </view>
+
+    <text catchtap='payCarOrder' style='margin-left:5px;' class='fix-bottom-1-4'>去支付</text>
+  </view>
+</view>
+<view class='top' style='z-index:999;'>
+  <fbutton extImgStyle='height:30px;width:30px;transform: rotate(90deg);' extStyle='width:30px;' adv='true' formType='submit' buttonImage='/images/pull_down_icon.png' buttonText='' bind:fbutton-tap='goBack' />
+  <text class='top-title' style='color:#fff;'>支付</text>
+</view>

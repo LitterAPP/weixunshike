@@ -39,7 +39,7 @@
       </view>
     </view>
   </view>
-  <view class='order-item'>
+  <view wx:if='{{order.orderType==0}}'  class='order-item'>
     <view class='order-item-1' hover-class='click-hover' data-orderid='{{order.orderId}}'>
       <image src='{{order.groupImg}}'></image>
       <view class='order-item-1-2'>
@@ -58,6 +58,31 @@
     </view>
     <view class='order-item-2' style='margin 5px 0px;'>
       <navigator style='color:#666;font-size:12px;padding:5px 10px;' url="/pages/shop/detail?productId={{order.productId}}" hover-class="click-hover">再次购买</navigator>
+    </view>
+  </view>
+
+  <view wx:if='{{order.orderType==1}}' class='order-item'>
+    <view  wx:for='{{order.productList}}' wx:key="{{id}}" class='order-item-1' hover-class='click-hover' data-orderid='{{order.orderId}}'>
+      <image src='{{item.groupImgage}}'></image>
+      <view class='order-item-1-2'>
+        <view class='order-item-1-2-1' style='width:{{W-72}}px;'>
+          <text style='width:{{W-72-50}}px;'>{{item.productName}}</text>
+          <text style='width:50px;font-size:13px;'>
+            ￥{{item.singPrice}}
+          </text>
+        </view>
+        <view class='order-item-1-2-1' style='width:{{W-72}}px;'>
+          <text style='width:{{W-72-50}}px;color:#666;font-size:12px;'>{{item.groupName}}</text>
+          <text style='width:50px;color:#666;font-size:12px;'>x{{item.buyNum}}</text>
+        </view>
+      </view> 
+    </view> 
+     <view class='order-item-2' style='margin 5px 0px;'>
+        <text style='color:#666;font-size:14px;'>合计：</text>
+        <text style='color:#DC143C;'>￥{{order.sumAmount}}</text>
+      </view>
+    <view class='order-item-2' style='margin 5px 0px;'>
+      <navigator style='color:#666;font-size:12px;padding:5px 10px;' url="/pages/shop/detail?productId={{order.productId}}" hover-class="click-hover">查看商品详情</navigator>
     </view>
   </view>
 
@@ -100,8 +125,8 @@
 
   <view class='order-info' style=''>
     <view class='order-info-1' style='background:#fff;height:50px; justify-content: space-around;margin-bottom:5px;'>
-      <text data-sellertelnumber='{{order.sellerTelNumber}}' catchtap='call' style='border:1px solid #04be02;color:#04be02;padding:5px;'>拨打客服电话</text>
-      <text data-copydata='{{order.sellerWxNumber}}' bindtap='copy' style='border:1px solid #04be02;color:#04be02;padding:5px;'>复制客服微信</text>
+      <text wx:if='{{order.sellerTelNumber}}' data-sellertelnumber='{{order.sellerTelNumber}}' catchtap='call' style='border:1px solid #04be02;color:#04be02;padding:5px;'>拨打客服电话</text>
+      <text  wx:if='{{order.sellerWxNumber}}' data-copydata='{{order.sellerWxNumber}}' bindtap='copy' style='border:1px solid #04be02;color:#04be02;padding:5px;'>复制客服微信</text>
     </view>
   </view>
 

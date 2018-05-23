@@ -1,0 +1,247 @@
+.fix-bottom-1 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-content: center;
+  justify-content: flex-end;
+  padding: 0px 0px;
+}
+
+.fix-bottom-1-1 {
+  color: #000;
+  font-size: 14px;
+}
+
+.fix-bottom-1-2 {
+  color: #d70606;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.fix-bottom-1-3 {
+  color: #d70606;
+  font-size: 12px;
+  padding: 0 5px;
+}
+
+.fix-bottom-1-4 {
+  background: #d70606;
+  color: #fff;
+  font-size: 14px;
+  height: 50px;
+  line-height: 50px;
+  width: 60px;
+  text-align: center;
+}
+
+checkbox {
+  border-radius: 50%;
+}
+
+.checkbox {
+  margin: 5px;
+}
+
+.car-item {
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 5px;
+}
+
+.shop-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-content: center;
+  align-items: center;
+}
+
+.shop-info text {
+  font-size: 14px;
+  color: #666;
+  margin: 5px;
+}
+
+.shop-avatar {
+  height: 15px;
+  width: 15px;
+}
+
+.product-img {
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+}
+
+.car-item-wrap {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-content: center;
+  align-items: center;
+  background: #fff;
+  margin-bottom: 3px;
+}
+
+.product-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-content: center;
+  align-items: center;
+}
+
+.product-info-1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: flex-start;
+  align-items: flex-start;
+}
+
+.price-del {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.product-info-1 text {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  text-overflow: ellipsis;
+  font-size: 14px;
+  color: #666;
+  margin-left: 5px;
+}
+
+.product-info-1-1 text {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  -webkit-line-clamp: 10;
+  text-overflow: ellipsis;
+  font-size: 15px;
+  color: #810020;
+}
+
+.product-info-2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-content: center;
+  align-items: center;
+}
+
+.product-info-2 text {
+  font-size: 13px;
+  color: #969696;
+}
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.empty text {
+  font-size: 13px;
+  color: #666;
+}
+
+.empty navigator {
+  color: #ff6347;
+  font-size: 14px;
+  border: 1px solid #ff6347;
+  padding: 2px 5px;
+  margin: 5px;
+  border-radius: 6px;
+}
+
+.seleced-all {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.seleced-all images {
+  height: 20px;
+  width: 20px;
+}
+
+.seleced-all text {
+  font-size: 13px;
+  color: #666;
+}
+
+/*在这里建个容器先，10个像素边框*/
+
+.circle {
+  width: 30px;
+  height: 30px;  
+  animation: roate 1.5s infinite linear; /*这里是给动画调用的时的参数*/   
+}
+
+/*旋转360度的设定，动画开始时0%，为0度，到动画结束时100%，为360度*/
+
+@keyframes roate {
+  0% {
+    transform: rotateZ(0);
+  }
+
+  100% {
+    transform: rotateZ(360deg);
+  }
+}
+
+.loading{
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+}
+.loading text{
+  font-size: 13px;
+  color: #666;
+  margin-left:10px; 
+} 
+
+
+.address{
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 10px;
+  background: #fff;
+}
+.adderss-info{
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+}
+.adderss-info text{
+  color:#666;
+  font-size:15px;
+}
+
+.address image{
+  width: 30px;
+  height: 30px;
+}
+.xinfeng image{
+  height: 5px;
+}

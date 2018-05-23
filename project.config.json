@@ -56,6 +56,48 @@
 					"name": "订单详情",
 					"pathName": "pages/shop/orderdetail",
 					"query": "orderId=QL-20180514114737-1708"
+				},
+				{
+					"id": -1,
+					"name": "自定义首页",
+					"pathName": "pages/shop/shopIndex",
+					"query": "scene%3dSP-20180507141428-1627",
+					"scene": "1035",
+					"referrerInfo": {
+						"appId": ""
+					}
+				},
+				{
+					"id": -1,
+					"name": "商品列表",
+					"pathName": "pages/shop/productList",
+					"query": "",
+					"scene": "1035",
+					"referrerInfo": {
+						"appId": ""
+					}
+				},
+				{
+					"id": -1,
+					"name": "购物车",
+					"pathName": "pages/shop/myCarList",
+					"query": "",
+					"scene": "1035",
+					"referrerInfo": {
+						"appId": ""
+					}
+				},
+				{
+					"id": 6,
+					"name": "购物车支付",
+					"pathName": "pages/shop/carPay",
+					"query": "orderId=QL-20180523101345-1028"
+				},
+				{
+					"id": 7,
+					"name": "订单详情",
+					"pathName": "pages/shop/orderdetail",
+					"query": "orderId=QL-20180523115636-1600"
 				}
 			]
 		}

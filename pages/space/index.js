@@ -46,6 +46,11 @@ Page({
 
     }
   },
+  goMyShopCar:function(){
+    wx.navigateTo({
+      url: '/pages/shop/myCarList',
+    })
+  },
   goApplyProduct:function(){
     wx.navigateTo({
       url: '/pages/shopmng/apply',

@@ -75,6 +75,35 @@
       <image lazy-load data-type='{{item.type}}' data-url='{{item.url}}' catchtap='navLinkClick' mode='widthFix' style='width:{{W}}px;height:170px;' src='{{item.img}}'></image>
     </block>
   </view>
+
+  <view wx:if='{{config && config.shopNavWrapList && config.shopNavWrapList.length>0}}'>
+    <block wx:for='{{config.shopNavWrapList}}' wx:for-item="item" wx:key='id'>
+      <view wx:if="{{item.position=='right'}}" class='nav-title' style='align-items:flex-end;'>
+        <text style='color:{{item.color}};font-size:{{item.fontSize}}px;'>{{item.title}}</text>
+      </view> 
+      <view wx:if="{{item.position=='center'}}" class='nav-title' style='align-items:center;'>
+        <text style='color:{{item.color}};font-size:{{item.fontSize}}px;'>{{item.title}}</text>
+      </view>
+       <view wx:if="{{!item.position || item.position=='left'}}" class='nav-title' style='align-items:flex-start;'>
+        <text style='color:{{item.color}};font-size:{{item.fontSize}}px;'>{{item.title}}</text>
+      </view>
+      <view wx:if='{{item.layout==1}}' class='wrap-nav-1'>
+          <block wx:for='{{item.list}}' wx:for-item="navItem" wx:key='id'>
+           <image  lazy-load data-type='{{navItem.type}}' data-url='{{navItem.url}}' catchtap='navLinkClick' mode='widthFix' style='width:{{W}}px;margin-top:3px;margin-right:2px;' src='{{navItem.img}}'></image> 
+           </block>
+      </view>
+
+      <view wx:if='{{item.layout==2}}' class='wrap-nav-2'>
+          <block wx:for='{{item.list}}' wx:for-item="navItem" wx:key='id'>           
+
+           <image wx:if='{{index%2==0}}' lazy-load data-type='{{navItem.type}}' data-url='{{navItem.url}}' catchtap='navLinkClick' mode='widthFix' style='width:{{(W-6)/2}}px;margin-top:3px;margin-right:3px;' src='{{navItem.img}}'></image>
+            <image wx:if='{{index%2==1}}' lazy-load data-type='{{navItem.type}}' data-url='{{navItem.url}}' catchtap='navLinkClick' mode='widthFix' style='width:{{(W-6)/2}}px;margin-top:3px;margin-left:3px;' src='{{navItem.img}}'></image>
+
+
+           </block>
+      </view>  
+    </block>
+  </view>
 </scroll-view>
 
 <view class='nav nav-item-bottom' wx:if='{{config && config.fiveNavList && config.fiveNavList.length>0}}'>

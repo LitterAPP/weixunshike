@@ -104,6 +104,9 @@ Page({
     var orderId = options.orderId
     that.setData({ W: util.getSysInfo().windowWidth, H: util.getSysInfo().windowHeight })
     util.checkLogin(false, function () {
+      wx.showLoading({
+        title: '加载中...',
+      })
       util.GET(app.globalData.host + '/shop/orderDetail',
         {
           session: wx.getStorageSync('session'),
@@ -129,6 +132,7 @@ Page({
               })
             },1000)           
           }
+          wx.hideLoading()
         })
     })
   },

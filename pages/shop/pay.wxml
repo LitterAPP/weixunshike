@@ -93,5 +93,5 @@
 
 <view class='top' >
   <fbutton extImgStyle='height:30px;width:30px;transform: rotate(90deg);' extStyle='width:30px;' adv='true' formType='submit' buttonImage='/images/pull_down_icon.png' buttonText='' bind:fbutton-tap='goBack' />
-  <text class='top-title'>支付信息</text>
+  <text class='top-title'>支付订单</text>
 </view>

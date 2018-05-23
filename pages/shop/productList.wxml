@@ -35,6 +35,7 @@
         <text class='item-price-1'>￥</text>
         <text class='item-price-2'>{{item.productNowPrice}}</text>
         <text class='item-price-3'>{{item.deal}}人付款</text>
+        <image data-pid='{{item.productId}}' catchtap='addToCar' style='width:20px;height:20px; float:right;' src='/images/car_red.png'></image>
       </view>
     </view>
     <view catchtap='goProductDetails' data-pid='{{item.productId}}' wx:if='{{index%2==1}}' style='margin-left:5px;background:#fff;width:{{(W-10)/2}}px;' hover-class='click-hover'>
@@ -46,6 +47,7 @@
         <text class='item-price-1'>￥</text>
         <text class='item-price-2'>{{item.productNowPrice}}</text>
         <text class='item-price-3'>{{item.deal}}人付款</text>
+        <image data-pid='{{item.productId}}' catchtap='addToCar' style='width:20px;height:20px; float:right;' src='/images/car_red.png'></image>
       </view>
     </view>
   </view> 

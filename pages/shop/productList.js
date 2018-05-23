@@ -31,6 +31,26 @@ Page({
       }
      that.list(false)
   },
+  addToCar: function (e) {
+    var that = this
+    var productId = e.currentTarget.dataset.pid
+    util.checkLogin(false, function () {
+      util.GET(app.globalData.host + '/shop/addTocar',
+        {
+          session: wx.getStorageSync('session'),
+          productId: productId,
+          groupId: '',
+          buyNum: 1
+        }, function (data) {
+          if (data && data.code == 1) {
+            util.showToast('成功加入')
+          } else {
+            util.showToast('加入失败')
+          }
+        })
+    })
+  },
+
   goProductDetails:function(e){
     var productId = e.currentTarget.dataset.pid
     wx.navigateTo({

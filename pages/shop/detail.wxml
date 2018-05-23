@@ -23,7 +23,7 @@
         <button open-type='share'></button>
       </view>
       <text>分享</text>
-    </view>
+    </view>     
   </view>
   <view class='title'>
     <text>{{product.productName}}</text>
@@ -109,10 +109,11 @@
       <view class='fix-bottom-1-1' catchtap='goToShopIndex'>
         <image src='/images/shop-index.png'></image>
         <text>首页</text>
-      </view>
-      <view class='fix-bottom-1-1'>
-        <fbutton extImgStyle='height:25px;width:25px;' extStyle='width:25px;' adv='true' formType='submit' buttonImage='/images/contact-avatar.png' openType='contact' buttonText='' />
-      </view>
+      </view> 
+      <view class='fix-bottom-1-1' catchtap='goToMyShopCar'>
+        <image src='/images/car_red.png'></image>
+        <text>购物车</text>
+      </view>  
 
       <!--
       <view class='fix-bottom-1-1' catchtap='collect'>
@@ -121,7 +122,11 @@
         <text>收藏</text>
       </view>-->
     </view>
-    <view class='fix-bottom-2'>
+    <view class='fix-bottom-2'> 
+      <view class='fix-bottom-2-2' style='background:#FF6347;' catchtap='addToCar'>
+        <image  mode='widthFix' style='height:30px;width:30px;' src='/images/car_white.png'></image>
+        <text>加入购物车</text>
+      </view>      
       <view class='fix-bottom-2-1' data-together='0' catchtap='buy' wx:if='{{!together||together==0}}'>
         <text>￥{{product.productNowPrice}}</text>
         <text>单独购买</text>
@@ -139,28 +144,37 @@
   <view wx:if='{{showTop}}' class='topTips' bindtap='goTop'>
     <image src='/images/top.png'></image>
   </view>
+   <view wx:else class='topTips' bindtap='goTop' style='background:rgba(0,0,0,0);padding:0px;border-radius:0px;'>
+    <fbutton extImgStyle='height:25px;width:25px;' extStyle='width:25px;' adv='true' formType='submit' buttonImage='/images/contact-avatar.png' openType='contact' buttonText='' />
+  </view>
+  
 
   <view wx:if='{{showGroup==1}}' class='product-group' style='width:{{W}}px;height:{{H}}px;' catchtap='hiddenGroup'>
     <view class='product-group-info' style='width:{{W}}px;' catchtap='cancel'>
       <view class='product-group-top' style='width:{{W}}px;'>
         <image class='product-group-top-image' src='{{chosedGroup.groupImage}}'></image>
         <text class='product-group-top-1'>￥{{showPrice}}</text>
-        <text class='product-group-top-2'>{{chosedGroup.groupName}}</text>
+        <text class='product-group-top-2' style='width:{{W-100}}px;'>{{chosedGroup.groupName}}</text>
         <image class='delete-image' catchtap='hiddenGroup' src='/images/delete.png'></image>
       </view>
       <scroll-view scroll-y='{{true}}' style='height:180px;padding 5px 0px;border-bottom:1px solid #F2F2F2'>
         <view class='product-group-item' wx:for='{{product.groups}}' wx:key='{{id}}'>
-          <text wx:if='{{chosedGroup.groupId === item.groupId}}' class='group-selected'>{{item.groupName}}</text>
-          <text catchtap='selectGroup' data-groupindex='{{item.groupIndex}}' wx:else class='group-unselecte'>{{item.groupName}}</text>
+          <view wx:if='{{chosedGroup.groupId === item.groupId}}' class='group-selected'><text>{{item.groupName}}</text></view>
+          <view catchtap='selectGroup' data-groupindex='{{item.groupIndex}}' wx:else class='group-unselecte'><text>{{item.groupName}}</text></view>
         </view>
       </scroll-view>
       <view class='product-group-number'>
         <text>数量</text>
         <slider style='width:{{W-100}}px' min='1' max='20' step='1' activeColor='#d70606' backgroundColor='#f2f2f2' show-value='{{true}}' value='{{buyNumber}}' bindchange='selectByNumber'></slider>
       </view>
-      <view class='product-group-bottom' catchtap='goPay'>
-        <text>确定</text>
-      </view>
+      <view class='product-group-bottom-container'>
+        <view style='width:{{W/2}}px;background:#FF6347;' class='product-group-bottom' catchtap='addToCar'>      
+          <text>加入购物车</text>
+        </view> 
+         <view style='width:{{W/2}}px;' class='product-group-bottom' catchtap='goPay'>      
+          <text>立即支付</text>
+        </view>
+      </view> 
     </view>
   </view>
 

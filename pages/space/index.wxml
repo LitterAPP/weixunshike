@@ -24,6 +24,13 @@
     </view>
     <image src='/images/arrow-right.png'></image>
   </view>
+  <view class='item' style='margin-bottom:10px;' hover-stop-propagation='{{true}}' hover-class='click-hover' bindtap='goMyShopCar'>
+    <view class='left'>
+      <image src='/images/car_red.png'></image>
+      <text>我的购物车</text>
+    </view>
+    <image src='/images/arrow-right.png'></image>
+  </view>
 
   <view class='item' style='margin-bottom:10px;margin-top:10px;' hover-stop-propagation='{{true}}' hover-class='click-hover' bindtap='changeAddress'>
     <view class='left'>
